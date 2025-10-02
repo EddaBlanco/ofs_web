@@ -3,7 +3,7 @@ import { Welcome } from '../welcome/welcome';
 
 @Component({
   selector: 'app-landing',
-  imports: [Welcome],
+  imports: [/*Welcome*/],
   templateUrl: './landing.html',
   styleUrl: './landing.scss'
 })

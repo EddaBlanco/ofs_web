@@ -1,0 +1,6 @@
+{
+    "bookings": {
+        "max_booking_time_hours": 4,
+        "max_bookings_per_user": 2
+    }
+}

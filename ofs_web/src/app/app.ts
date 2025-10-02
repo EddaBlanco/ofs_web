@@ -7,7 +7,7 @@ import { Landing } from "./components/landing/landing";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Welcome, Footer, Landing],
+  imports: [RouterOutlet, Welcome, Footer, Landing,FontAwesomeModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
