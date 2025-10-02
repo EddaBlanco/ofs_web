@@ -1,1 +1,3 @@
-a
+git add .
+git commit -m "bla bla"
+git push
