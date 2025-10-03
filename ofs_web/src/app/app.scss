@@ -15,20 +15,33 @@
 main {
     padding-top: 20px
 }*/
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 .wrapper {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #1a237e 0%, #0d133d 100%);
+  //background: linear-gradient(180deg, #1a237e 0%, #0d133d 100%);
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+
 }
 
 main {
   flex: 1;
-  padding: 40px 0;
+  //padding: 40px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+
+
 
 app-footer {
   margin-top: auto;
