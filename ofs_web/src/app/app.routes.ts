@@ -1,3 +1,13 @@
 import { Routes } from '@angular/router';
+import { Monitorizacion } from './pages/monitorizacion/monitorizacion';
+import { Camaras } from './pages/monitorizacion/camaras/camaras';
+import { EstacionMeteorologica } from './pages/monitorizacion/estacion-meteorologica/estacion-meteorologica';
+import { Equipamiento } from './pages/equipamiento/equipamiento';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+{ path: 'monitorizacion', component: Monitorizacion },
+{ path: 'monitorizacion/camaras', component: Camaras },
+{ path: 'monitorizacion/estacion-meteorologica', component: EstacionMeteorologica },
+{ path: 'equipamiento', component: Equipamiento },
+{ path: '', redirectTo: 'monitorizacion', pathMatch: 'full' }
+];

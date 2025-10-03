@@ -1,0 +1,48 @@
+/* On scroll changes to background-color: #272727; */
+
+nav {
+    background-color: transparent;
+    transition: background-color 0.4s ease-out;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    height: auto;
+}
+
+.navbar-logo {
+    height: 35px;
+    width: auto;
+    margin-top: -15px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    background-color: #0f2036e0;
+    padding: 0;
+    border-radius: 5px;
+}
+
+.dropdown-item {
+    color: white !important;
+    font-size: unset !important;
+    border-radius: 5px;
+}
+
+.dropdown-item:hover {
+    background-color: #18345ae1;
+}
+
+.dropdown-toggle::after {
+    margin-left: 0.355em;
+    vertical-align: 0.155em;
+}
+
+nav ul a {
+    font-size: 19px !important;
+}
