@@ -5,9 +5,9 @@ import { EstacionMeteorologica } from './pages/monitorizacion/estacion-meteorolo
 import { Equipamiento } from './pages/equipamiento/equipamiento';
 
 export const routes: Routes = [
-{ path: 'monitorizacion', component: Monitorizacion },
-{ path: 'monitorizacion/camaras', component: Camaras },
-{ path: 'monitorizacion/estacion-meteorologica', component: EstacionMeteorologica },
-{ path: 'equipamiento', component: Equipamiento },
+{ path: 'pages/monitorizacion', component: Monitorizacion },
+{ path: 'pages/monitorizacion/camaras', component: Camaras },
+{ path: 'pages/monitorizacion/estacion-meteorologica', component: EstacionMeteorologica },
+{ path: 'pages/equipamiento', component: Equipamiento },
 { path: '', redirectTo: 'monitorizacion', pathMatch: 'full' }
 ];
