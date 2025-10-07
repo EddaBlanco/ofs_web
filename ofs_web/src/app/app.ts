@@ -8,7 +8,7 @@ import{ routes } from './app.routes';
 import { Navbar } from './components/navbar/navbar';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Welcome, Footer, Landing,FontAwesomeModule,Navbar,],
+  imports: [RouterOutlet,FontAwesomeModule,Navbar,],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
