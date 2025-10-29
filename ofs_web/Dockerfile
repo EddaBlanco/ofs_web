@@ -1,10 +1,22 @@
-FROM node:lts-slim as build
-WORKDIR /src
-RUN npm install -g @angular/cli
-COPY . ./
-RUN npm ci
-RUN ng build --configuration=production
+FROM node:20-alpine as build-stage
 
-FROM nginx:stable AS final
+WORKDIR /src
+
+# Copiar package files primero
+COPY package*.json ./
+
+# Instalar Angular CLI globalmente y dependencias
+RUN npm install -g @angular/cli@latest
+RUN npm ci
+
+# Copiar el resto del código
+COPY . .
+
+# Construir la aplicación
+RUN npx ng build --configuration=production
+
+# Etapa de producción
+FROM nginx:alpine
+COPY --from=build-stage /src/dist/ofs_web /usr/share/nginx/html
 EXPOSE 80
-COPY --from=build src/dist/ofs_web/browser /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
