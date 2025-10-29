@@ -1,12 +1,48 @@
 
 .camera-stream-container {
-		width: 80vw;
-		height: 70vh;
+	width: 70vw;
+	height: 55vh;
 	background: #181c2f;
 	border-radius: 16px;
 	box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-	margin: 40px auto;
+	margin: 32px auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
+
+/* Asegura que elementos multimedia ocupen todo el contenedor y estén centrados */
+.camera-stream-container iframe,
+.camera-stream-container video,
+.camera-stream-container img {
+	width: 100%;
+	height: 100%;
+	display: block; /* evita inline-gap */
+	border-radius: 12px;
+}
+
+/* Si usas <video> o <img>, controlar ajuste con object-fit */
+.camera-stream-container video,
+.camera-stream-container img {
+	/* Mostrar todo el video/imagen sin recortar. Aplica barras si la relación de aspecto no coincide */
+	object-fit: contain; /* contain para ver todo el vídeo sin recortar */
+	object-position: center center;
+	background: #000; /* letterbox negro alrededor si es necesario */
+}
+
+/* Si el contenido sigue pegado a la esquina, fuerza un wrapper centrado */
+.camera-inner {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Límites para evitar que el visor crezca demasiado en pantallas grandes */
+.camera-stream-container {
+	max-width: 1200px;
+	max-height: 800px;
+	min-width: 320px;
+}
+
