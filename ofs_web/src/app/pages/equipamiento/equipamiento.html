@@ -1,1 +1,27 @@
-<p>equipamiento works!</p>
+<div class="container flow-text text-white ">
+    <div class="row  justify-content-center ficha  ">
+        <div *ngFor="let elem of types" class="rounded button-filter  text-white col-auto  z-depth-5" [ngClass]="{selected: selectedType === elem.type}" (click)="filterEquipment(elem.type)">
+            <div>{{elem.label}}</div>
+        </div>
+    </div>
+    <div class="ficha row bg-transparent no-padding rounded z-depth-5" *ngFor="let device of showingEquipment">
+        <div class=" col-12 col-lg-6 no-padding">
+            <img class="image rounded" src="{{device.image}}">
+            <!-- <div class="col-12 row"> -->
+        </div>
+        <div class=" col-12 col-lg-6 ficha">
+
+            <h1 class="card-title">{{device.model}}</h1>
+
+            <p>{{device.description}}</p>
+            <div class="transparent" *ngFor="let property of device.properties ">
+                <div class="row">
+                    <p class="font-weight-light col-4">{{property.name}}</p>
+                    <p class="col-8">{{property.value}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
