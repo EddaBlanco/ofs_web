@@ -11,7 +11,7 @@ import { Navbar } from './components/navbar/navbar';
   selector: 'app-root',
   imports: [RouterOutlet, FontAwesomeModule, Navbar, HttpClientModule],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
 export class App {
   protected readonly title = signal('ofs_web');
