@@ -43,14 +43,14 @@ export class Equipamiento {
 				}
 			]
 			},
-			{
+			/*{
 			name: 'Meteo Watcher',
 			model: 'Meteo Watcher II',
 			description: 'Monitor de condiciones medioambientales para observatorios astronómicos.',
 			image: 'assets/img/equipment/meteowatcher.jpg',
 			type: 'sensor',
 			properties: []
-		},
+		},*/
     {
 			name: 'Estación Meteorológica',
 			model: 'Estación Meteorológica',
@@ -65,7 +65,7 @@ export class Equipamiento {
 				}
 			]
 		},
-    {
+    /*{ CAMARA ROJA ES LA QUE HAY QUE PONER QUE ESTA YA NO LA USAMOS
 			name: 'Cámara DMK',
 			model: 'DMK41 02 AU',
 			description: 'Cámara profesional para máximo rendimiento en astrofotografía planetaria, lunar y solar.',
@@ -85,7 +85,7 @@ export class Equipamiento {
 					value: '1/2 “CCD Sonyy ICX205AL (progressive scan)'
 				}
 			]
-		},
+		},*/
 			{
 				name: 'Mobotix M10',
 			model: 'Mobotix M10 AllaroundDual',
@@ -116,7 +116,7 @@ export class Equipamiento {
 				}
 			]
 		},
-    {
+    /*{
 			name: 'Webcam',
 			model: 'Philips ToUcam PRO',
 			description: '',
@@ -136,7 +136,7 @@ export class Equipamiento {
 					value: 'CCD'
 				}
 			]
-		},
+		},*/
 		];
 
 		this.showingEquipment = this.equipment;
