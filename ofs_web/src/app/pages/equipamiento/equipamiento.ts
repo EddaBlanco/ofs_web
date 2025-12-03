@@ -65,27 +65,31 @@ export class Equipamiento {
 				}
 			]
 		},
-    /*{ CAMARA ROJA ES LA QUE HAY QUE PONER QUE ESTA YA NO LA USAMOS
-			name: 'Cámara DMK',
-			model: 'DMK41 02 AU',
-			description: 'Cámara profesional para máximo rendimiento en astrofotografía planetaria, lunar y solar.',
-			image: 'assets/img/equipment/dmk41.jpg',
+    { 
+			name: 'Cámara ZWO ASI',
+			model: 'ZWO ASI 678MC',
+			description: 'Cámara astronómica planetaria en color sin refrigerar de última generación',
+			image: 'assets/img/equipment/ZWO.jfif',
 			type: 'camera',
 			properties: [
 				{
 					name: 'Resolución',
-					value: '1280 x 960 píxels'
+					value: '3840 X 2160 píxels'
 				},
 				{
 					name: 'Frame Rate',
-					value: '15 FPS'
+					value: '47 FPS'
 				},
 				{
 					name: 'Sensor',
-					value: '1/2 “CCD Sonyy ICX205AL (progressive scan)'
+					value: ' CMOS SONY IMX678 de 1/1,8"'
+				},
+				{
+					name: 'Velocidad de captura máxima',
+					value: '  47 fps a 12 bits'
 				}
 			]
-		},*/
+		},
 			{
 				name: 'Mobotix M10',
 			model: 'Mobotix M10 AllaroundDual',
