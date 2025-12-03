@@ -86,6 +86,7 @@ export class EstacionMeteorologica {
   loading = false;
   error: string | null = null;
   data: any[] = [];
+  expandedIndex: number | null = null;
 
   // Obtener categorías disponibles para la granularidad actual
   get availableCategories(): string[] {
@@ -179,6 +180,16 @@ export class EstacionMeteorologica {
     return allFields.length > 0 && allFields.every(f => this.selectedFields.includes(f));
   }
 
+  // Toggle para expandir/contraer un item
+  toggleExpanded(index: number): void {
+    this.expandedIndex = this.expandedIndex === index ? null : index;
+  }
+
+  // Obtener las claves de datos de un row (excluyendo start_time y end_time)
+  getDataKeys(row: any): string[] {
+    return Object.keys(row).filter(key => key !== 'start_time' && key !== 'end_time');
+  }
+
   // Cuando cambia granularidad, preseleccionar campos por defecto
   onGranularityChange(): void {
     this.selectedFields = [];
@@ -228,6 +239,7 @@ export class EstacionMeteorologica {
     this.error = null;
     this.loading = true;
     this.data = [];
+    this.expandedIndex = null;
 
     this.weatherService
       .getStationData(this.stationId, this.timezone, this.startTime, this.endTime, this.granularity, this.fields)
@@ -236,6 +248,7 @@ export class EstacionMeteorologica {
           console.log('Respuesta recibida:', res);
           this.data = res || [];
           this.loading = false;
+          this.expandedIndex = this.data.length > 0 ? 0 : null;
           // Forzar detección de cambios para actualizar la vista
           this.cdr.detectChanges();
         },
@@ -243,6 +256,7 @@ export class EstacionMeteorologica {
           console.error('Error en la consulta:', err);
           this.error = err?.message || 'Error al solicitar datos';
           this.loading = false;
+          this.expandedIndex = null;
           // Forzar detección de cambios para mostrar error
           this.cdr.detectChanges();
         }
