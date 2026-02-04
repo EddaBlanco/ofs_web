@@ -13,7 +13,7 @@
 
             <h1 class="card-title">{{device.model}}</h1>
 
-            <p>{{device.description}}</p>
+            <p [innerHTML]="getDescriptionHtml(device.description)"></p>
             <div class="transparent" *ngFor="let property of device.properties ">
                 <div class="row">
                     <p class="font-weight-light col-4">{{property.name}}</p>

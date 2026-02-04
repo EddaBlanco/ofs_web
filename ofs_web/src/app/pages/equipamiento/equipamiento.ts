@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-equipamiento',
@@ -18,6 +19,8 @@ export class Equipamiento {
 		{ type: 'telescope', label: 'Telescopios' },
 		{ type: 'camera', label: 'Cámaras' }
 	];
+
+  constructor(private sanitizer: DomSanitizer) {}
 
 	// Para pruebas se incluye un listado de ejemplo. Sustituye por tu servicio real si lo deseas.
 	ngOnInit() {
@@ -55,8 +58,8 @@ export class Equipamiento {
 			name: 'Estación Meteorológica',
 			model: 'Estación Meteorológica',
 			description:
-				'Estación meteorloógica de construcción propia, empleada para la recuperación de datos climáticos en el observatorio.',
-			image: 'assets/img/equipment/meteostation.jpg',
+				'Estación meteorloógica de construcción propia, empleada para la recuperación de datos climáticos en el observatorio que serán publicados en la web. Esta estacion meteorológica está construida sobre la API y software desarrollada para el proyecto picoWeather, disponible en GitHub: https://github.com/ljn0099',
+			image: 'assets/img/equipment/estacion_meteorologica_nueva.jpeg',
 			type: 'sensor',
 			properties: [
 				{
@@ -144,6 +147,18 @@ export class Equipamiento {
 		];
 
 		this.showingEquipment = this.equipment;
+	}
+
+	// Convierte URLs en la descripción a enlaces clicables y sanitiza el HTML
+	getDescriptionHtml(desc: string): SafeHtml {
+		if (!desc) return '' as unknown as SafeHtml;
+		// Buscar URLs (http/https) y reemplazarlas por enlaces
+		const urlRegex = /(https?:\/\/[^\s]+)/g;
+		const html = desc.replace(urlRegex, (url: string) => {
+			const safeUrl = url;
+			return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer">${safeUrl}</a>`;
+		});
+		return this.sanitizer.bypassSecurityTrustHtml(html);
 	}
 
 	filterEquipment(type: string) {

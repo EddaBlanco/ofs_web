@@ -75,13 +75,19 @@ const FIELDS_BY_GRANULARITY: FieldsMap = {
   styleUrls: ['./estacion-meteorologica.scss']
 })
 export class EstacionMeteorologica {
-  private readonly stationId = 'dee0666d-25c8-4e18-8b3e-ad191c1b07e8';
+  private readonly stationId = '83b2635b-2f70-4137-8e3b-ff7e907a10f9';
   timezone = 'Europe/Madrid';
-  startTime = new Date().toISOString().slice(0, 19);
-  endTime = new Date().toISOString().slice(0, 19);
+  // Inicializar endTime a ahora y startTime 3 horas antes al cargar
+  endTime = this.getDateHoursAgo(0);
+  startTime = this.getDateHoursAgo(3);
   granularity = 'hour';
   fields = 'avg_temperature,avg_humidity';
   selectedFields: string[] = [];
+  // UI
+  showFilters = false;
+  // Widget lateral
+  latestData: any = null;
+  loadingWidget = false;
 
   loading = false;
   error: string | null = null;
@@ -190,6 +196,25 @@ export class EstacionMeteorologica {
     return Object.keys(row).filter(key => key !== 'start_time' && key !== 'end_time');
   }
 
+  // Calcular una fecha N horas atrás desde ahora y devolver en HORA LOCAL
+  private getDateHoursAgo(hours: number): string {
+    const date = new Date();
+    date.setHours(date.getHours() - hours);
+    return this.formatLocalDateTime(date);
+  }
+
+  // Formatear Date a 'YYYY-MM-DDTHH:MM:SS' en hora local (compatible con datetime-local y la API)
+  private formatLocalDateTime(d: Date): string {
+    const pad = (n: number) => n.toString().padStart(2, '0');
+    const year = d.getFullYear();
+    const month = pad(d.getMonth() + 1);
+    const day = pad(d.getDate());
+    const hours = pad(d.getHours());
+    const minutes = pad(d.getMinutes());
+    const seconds = pad(d.getSeconds());
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+  }
+
   // Cuando cambia granularidad, preseleccionar campos por defecto
   onGranularityChange(): void {
     this.selectedFields = [];
@@ -212,6 +237,51 @@ export class EstacionMeteorologica {
     this.updateFieldsFromString();
     console.log('Constructor: selectedFields inicializado:', this.selectedFields);
     console.log('Constructor: fields inicializado:', this.fields);
+    // Inicializar widget y tiempos (end ahora, start 3h antes)
+    this.refreshTimesToNow();
+    // Cargar datos actuales para widget
+    this.fetchLatestWidgetData();
+  }
+
+  // Establecer endTime a ahora y startTime a N horas antes
+  refreshTimesToNow(hoursBack: number = 3): void {
+    this.endTime = this.getDateHoursAgo(0);
+    this.startTime = this.getDateHoursAgo(hoursBack);
+    // Asegurar que el template vea los cambios inmediatamente
+    try { this.cdr.detectChanges(); } catch (e) { /* noop */ }
+  }
+
+  // Buscar datos recientes para el widget lateral (última hora)
+  fetchLatestWidgetData(): void {
+    this.loadingWidget = true;
+    const widgetEnd = this.getDateHoursAgo(0);
+    const widgetStart = this.getDateHoursAgo(1);
+    // Elegir campos comunes para el widget
+    const widgetFields = 'temperature,humidity,pressure,wind_speed,wind_direction,rainfall';
+    this.weatherService.getStationData(this.stationId, this.timezone, widgetStart, widgetEnd, 'raw', widgetFields)
+      .subscribe({
+        next: (res) => {
+          // Respuesta esperada: array de mediciones; usar la última
+          if (Array.isArray(res) && res.length > 0) {
+            this.latestData = res[res.length - 1];
+          } else if (res && typeof res === 'object') {
+            // Si API devuelve objeto con 'data' array
+            const arr = res.data || [];
+            this.latestData = arr.length > 0 ? arr[arr.length - 1] : res;
+          } else {
+            this.latestData = null;
+          }
+          this.loadingWidget = false;
+          // Forzar detección de cambios para que el widget se muestre sin necesidad de otras interacciones
+          try { this.cdr.detectChanges(); } catch (e) { /* noop */ }
+        },
+        error: (err) => {
+          console.error('Error widget datos recientes:', err);
+          this.latestData = null;
+          this.loadingWidget = false;
+          try { this.cdr.detectChanges(); } catch (e) { /* noop */ }
+        }
+      });
   }
 
   queryData() {
@@ -249,16 +319,30 @@ export class EstacionMeteorologica {
           this.data = res || [];
           this.loading = false;
           this.expandedIndex = this.data.length > 0 ? 0 : null;
-          // Forzar detección de cambios para actualizar la vista
-          this.cdr.detectChanges();
+          // Forzar detección de cambios para actualizar la vista (con setTimeout para evitar timing issues)
+          setTimeout(() => {
+            try { this.cdr.detectChanges(); } catch (e) { /* noop */ }
+          }, 0);
         },
         error: (err) => {
           console.error('Error en la consulta:', err);
-          this.error = err?.message || 'Error al solicitar datos';
+          // Mostrar información más útil al usuario cuando la estación no existe
+          const status = err?.status;
+          if (status === 404) {
+            this.error = `Estación no encontrada (404). Verifica que el stationId ${this.stationId} es correcto.`;
+          } else if (status) {
+            // Si hay un status distinto, mostrarlo
+            const serverMsg = err?.error?.message || err?.message || JSON.stringify(err?.error || err);
+            this.error = `Error ${status}: ${serverMsg}`;
+          } else {
+            this.error = err?.message || 'Error al solicitar datos';
+          }
           this.loading = false;
           this.expandedIndex = null;
           // Forzar detección de cambios para mostrar error
-          this.cdr.detectChanges();
+          setTimeout(() => {
+            try { this.cdr.detectChanges(); } catch (e) { /* noop */ }
+          }, 0);
         }
       });
   }

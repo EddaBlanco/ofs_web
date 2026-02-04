@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
-  private baseUrl = 'https://test.picoweather.net';
+  // Usar el host de producción/aplicación: api.picoweather.net
+  private baseUrl = 'https://api.picoweather.net';
 
   constructor(private http: HttpClient) {}
 
