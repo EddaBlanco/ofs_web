@@ -1,26 +1,26 @@
-<div class="container-fluid">
-	<h2 class="text-white">Estación meteorológica</h2>
+<div class="container-fluid px-2 px-md-3">
+	<h2 class="text-white mt-2 mb-3">Estación meteorológica</h2>
 
-	<div class="row">
+	<div class="row g-2">
 		<!-- Columna izquierda: Controles y resultados -->
-		<div class="col-12 col-lg-9">
+		<div class="col-12 col-lg-9 order-lg-1">
 			<form (ngSubmit)="queryData()" class="mb-3">
 				<div class="row g-2 align-items-end">
-					<div class="col-auto">
-						<label class="form-label text-white">Timezone</label>
-						<input class="form-control" [(ngModel)]="timezone" name="timezone" />
+					<div class="col-12 col-sm-6 col-md-auto">
+						<label class="form-label text-white form-label-sm">Timezone</label>
+						<input class="form-control form-control-sm" [(ngModel)]="timezone" name="timezone" />
 					</div>
-					<div class="col-auto">
-						<label class="form-label text-white">Start</label>
-						<input type="datetime-local" class="form-control" [(ngModel)]="startTime" name="period_start" />
+					<div class="col-12 col-sm-6 col-md-auto">
+						<label class="form-label text-white form-label-sm">Start</label>
+						<input type="datetime-local" class="form-control form-control-sm" [(ngModel)]="startTime" name="period_start" />
 					</div>
-					<div class="col-auto">
-						<label class="form-label text-white">End</label>
-						<input type="datetime-local" class="form-control" [(ngModel)]="endTime" name="period_end" />
+					<div class="col-12 col-sm-6 col-md-auto">
+						<label class="form-label text-white form-label-sm">End</label>
+						<input type="datetime-local" class="form-control form-control-sm" [(ngModel)]="endTime" name="period_end" />
 					</div>
-					<div class="col-12 col-md-4">
-						<label class="form-label text-white">Granularity</label>
-						<select class="form-select" [(ngModel)]="granularity" (change)="onGranularityChange()" name="granularity">
+					<div class="col-12 col-sm-6 col-md-4">
+						<label class="form-label text-white form-label-sm">Granularity</label>
+						<select class="form-select form-select-sm" [(ngModel)]="granularity" (change)="onGranularityChange()" name="granularity">
 							<option value="raw">raw</option>
 							<option value="hour">hour</option>
 							<option value="day">day</option>
@@ -29,14 +29,14 @@
 						</select>
 					</div>
 
-					<div class="col-12 col-md-8 text-end">
-						<label class="form-label text-white d-block mb-2">Campos disponibles</label>
-						<div class="btn-group">
-							<button type="button" class="btn btn-secondary" (click)="showFilters = !showFilters">
+					<div class="col-12 text-center text-md-end">
+						<label class="form-label text-white d-block mb-2 form-label-sm">Campos</label>
+						<div class="d-flex gap-2 flex-wrap justify-content-center justify-content-md-end">
+							<button type="button" class="btn btn-sm btn-secondary" (click)="showFilters = !showFilters">
 								<i class="fas fa-filter"></i> Filtros
 							</button>
-							<button type="button" class="btn btn-sm btn-success" (click)="selectAllFields()">Seleccionar todos</button>
-							<button type="button" class="btn btn-sm btn-danger" (click)="clearAllFields()">Deseleccionar</button>
+							<button type="button" class="btn btn-sm btn-success" (click)="selectAllFields()">Todos</button>
+							<button type="button" class="btn btn-sm btn-danger" (click)="clearAllFields()">Limpiar</button>
 						</div>
 					</div>
 
@@ -73,13 +73,13 @@
 			<div *ngIf="error" class="text-danger">{{ error }}</div>
 
 			<div *ngIf="data.length > 0">
-				<h4 class="text-white mt-3"><i class="fas fa-chart-line"></i> Resultados ({{ data.length }} mediciones)</h4>
+				<h4 class="text-white mt-3 text-center text-md-start"><i class="fas fa-chart-line"></i> Resultados ({{ data.length }})</h4>
 				<div class="row g-2">
-					<div *ngFor="let row of data; let i = index" class="col-12 col-md-6 col-lg-4">
+					<div *ngFor="let row of data; let i = index" class="col-12 col-sm-6 col-lg-4">
 						<div class="card bg-dark border-secondary h-100">
 							<div class="card-header bg-secondary p-2 text-dark fw-bold">
-								<i class="fas fa-clock"></i>
-								{{ row.start_time }} <span class="text-muted">→</span> {{ row.end_time }}
+								<i class="fas fa-arrow-right"></i>
+								{{ row.start_time }}
 							</div>
 							<div class="card-body p-3">
 								<div *ngFor="let key of getDataKeys(row)" class="mb-2">
@@ -94,12 +94,12 @@
 		</div>
 
 		<!-- Columna derecha: Widget de datos actuales -->
-		<div class="col-12 col-lg-3">
+		<div class="col-12 col-lg-3 order-lg-2">
 			<div class="card bg-dark border-secondary p-3 sticky-top" style="top:1rem">
-				<h5 class="text-white">
+				<h5 class="text-white text-center text-lg-start">
 					<i class="fas fa-gauge-high"></i> Datos actuales
 				</h5>
-				<div *ngIf="loadingWidget" class="text-white">
+				<div *ngIf="loadingWidget" class="text-white text-center">
 					<small class="text-muted">Cargando...</small>
 				</div>
 				<div *ngIf="!loadingWidget && latestData">
@@ -107,12 +107,12 @@
 						<div class="text-info small fw-bold">{{ k }}</div>
 						<div class="text-white">{{ latestData[k] ?? 'N/A' }}</div>
 					</div>
-					<div class="text-muted small mt-2">
-						{{ latestData.start_time }} → {{ latestData.end_time }}
+					<div class="text-muted small mt-2 text-center">
+						{{ latestData.start_time }}
 					</div>
 				</div>
-				<div *ngIf="!loadingWidget && !latestData" class="text-muted small">
-					No hay datos actuales disponibles.
+				<div *ngIf="!loadingWidget && !latestData" class="text-muted small text-center">
+					No hay datos disponibles.
 				</div>
 				<div class="mt-3">
 					<button class="btn btn-sm btn-outline-primary w-100" (click)="fetchLatestWidgetData()">

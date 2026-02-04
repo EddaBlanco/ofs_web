@@ -1,4 +1,5 @@
 
+
 .camera-stream-container {
 	width: 70vw;
 	height: 55vh;
@@ -9,6 +10,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	max-width: 1200px;
+	max-height: 800px;
+	min-width: 320px;
 }
 
 /* Asegura que elementos multimedia ocupen todo el contenedor y estén centrados */
@@ -39,10 +43,35 @@
 	justify-content: center;
 }
 
-/* Límites para evitar que el visor crezca demasiado en pantallas grandes */
-.camera-stream-container {
-	max-width: 1200px;
-	max-height: 800px;
-	min-width: 320px;
+/* Responsive para tablet */
+@media (max-width: 1024px) {
+	.camera-stream-container {
+		width: 80vw;
+		height: 50vh;
+		margin: 24px auto;
+		max-height: 600px;
+	}
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+	.camera-stream-container {
+		width: 90vw;
+		height: 45vh;
+		margin: 16px auto;
+		max-height: 450px;
+		border-radius: 12px;
+	}
+}
+
+/* Responsive para móvil pequeño */
+@media (max-width: 576px) {
+	.camera-stream-container {
+		width: 95vw;
+		height: 40vh;
+		margin: 12px auto;
+		max-height: 350px;
+		border-radius: 8px;
+	}
 }
 

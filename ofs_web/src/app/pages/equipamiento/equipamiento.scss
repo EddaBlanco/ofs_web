@@ -36,6 +36,70 @@
 }
 
 /* En pantallas pequeñas, reducir la altura fija */
-@media (max-width: 767px) {
-  .image { max-height: 320px; }
+@media (max-width: 1024px) {
+  .image {
+    max-height: 400px;
+    height: auto;
+  }
+
+  .button-filter {
+    padding: 4px 14px;
+    margin: 4px 5px;
+    font-size: 14px;
+  }
 }
+
+@media (max-width: 768px) {
+  .image {
+    max-height: 300px;
+  }
+
+  .ficha {
+    padding: 10px;
+    margin-bottom: 16px;
+  }
+
+  .ficha > .col-lg-6 {
+    padding: 8px;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .button-filter {
+    padding: 3px 12px;
+    margin: 3px 4px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .image {
+    max-height: 220px;
+  }
+
+  .ficha {
+    padding: 8px;
+    margin-bottom: 12px;
+  }
+
+  .ficha > .col-lg-6 {
+    padding: 6px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .button-filter {
+    padding: 2px 10px;
+    margin: 2px 3px;
+    font-size: 11px;
+  }
+
+  .transparent {
+    font-size: 12px;
+  }
+}
+
