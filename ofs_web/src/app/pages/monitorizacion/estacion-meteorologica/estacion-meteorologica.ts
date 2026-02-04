@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WeatherService } from '../../../services/weather.service';
@@ -232,7 +232,7 @@ export class EstacionMeteorologica {
     }
   }
 
-  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef) {
+  constructor(private weatherService: WeatherService, private cdr: ChangeDetectorRef, private ngZone: NgZone) {
     // Inicializar selectedFields desde fields
     this.updateFieldsFromString();
     console.log('Constructor: selectedFields inicializado:', this.selectedFields);
@@ -319,10 +319,8 @@ export class EstacionMeteorologica {
           this.data = res || [];
           this.loading = false;
           this.expandedIndex = this.data.length > 0 ? 0 : null;
-          // Forzar detección de cambios para actualizar la vista (con setTimeout para evitar timing issues)
-          setTimeout(() => {
-            try { this.cdr.detectChanges(); } catch (e) { /* noop */ }
-          }, 0);
+          // Forzar detección de cambios inmediatamente
+          this.cdr.markForCheck();
         },
         error: (err) => {
           console.error('Error en la consulta:', err);
@@ -339,10 +337,8 @@ export class EstacionMeteorologica {
           }
           this.loading = false;
           this.expandedIndex = null;
-          // Forzar detección de cambios para mostrar error
-          setTimeout(() => {
-            try { this.cdr.detectChanges(); } catch (e) { /* noop */ }
-          }, 0);
+          // Forzar detección de cambios inmediatamente
+          this.cdr.markForCheck();
         }
       });
   }

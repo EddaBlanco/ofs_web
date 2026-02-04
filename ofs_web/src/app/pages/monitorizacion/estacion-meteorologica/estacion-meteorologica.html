@@ -73,27 +73,18 @@
 			<div *ngIf="error" class="text-danger">{{ error }}</div>
 
 			<div *ngIf="data.length > 0">
-				<h4 class="text-white mt-3">Resultados ({{ data.length }} mediciones)</h4>
-				<div class="results-accordion">
-					<div *ngFor="let row of data; let i = index" class="accordion-item card bg-dark border-secondary mb-2">
-						<button
-							class="accordion-header btn btn-dark w-100 text-start p-3 border-0"
-							(click)="toggleExpanded(i)"
-							type="button"
-						>
-							<span class="text-info fw-bold">
+				<h4 class="text-white mt-3"><i class="fas fa-chart-line"></i> Resultados ({{ data.length }} mediciones)</h4>
+				<div class="row g-2">
+					<div *ngFor="let row of data; let i = index" class="col-12 col-md-6 col-lg-4">
+						<div class="card bg-dark border-secondary h-100">
+							<div class="card-header bg-secondary p-2 text-dark fw-bold">
+								<i class="fas fa-clock"></i>
 								{{ row.start_time }} <span class="text-muted">→</span> {{ row.end_time }}
-							</span>
-							<span class="float-end">
-								<i class="fas" [ngClass]="expandedIndex === i ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-							</span>
-						</button>
-
-						<div *ngIf="expandedIndex === i" class="accordion-body p-4 bg-darker border-top border-secondary">
-							<div class="data-fields">
-								<div *ngFor="let key of getDataKeys(row)" class="data-field mb-3">
-									<div class="field-name text-info fw-bold">{{ key }}:</div>
-									<div class="field-value text-white ps-3">{{ row[key] ?? 'N/A' }}</div>
+							</div>
+							<div class="card-body p-3">
+								<div *ngFor="let key of getDataKeys(row)" class="mb-2">
+									<div class="text-info small fw-bold">{{ key }}</div>
+									<div class="text-white">{{ row[key] ?? 'N/A' }}</div>
 								</div>
 							</div>
 						</div>
