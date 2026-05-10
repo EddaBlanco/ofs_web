@@ -196,6 +196,101 @@ export class EstacionMeteorologica {
     return Object.keys(row).filter(key => key !== 'start_time' && key !== 'end_time');
   }
 
+  // Etiquetas legibles para los campos del widget actual
+  getWidgetLabel(key: string): string {
+    const labels: { [key: string]: string } = {
+      avg_temperature: 'Avg. temperature',
+      avg_humidity: 'Avg. humidity',
+      avg_pressure: 'Avg. pressure',
+      sum_rainfall: 'Total rainfall',
+      stddev_rainfall: 'Rainfall std. deviation',
+      avg_wind_speed: 'Avg. wind speed',
+      avg_wind_direction: 'Avg. wind direction',
+      stddev_wind_speed: 'Wind speed std. deviation',
+      max_gust_speed: 'Max. gust speed',
+      max_gust_direction: 'Max. gust direction',
+      avg_lux: 'Avg. luminosity',
+      avg_uvi: 'Avg. UV Index',
+      avg_solar_irradiance: 'Avg. solar irradiance',
+      wind_run: 'Wind run',
+      max_temperature: 'Max. temperature',
+      min_temperature: 'Min. temperature',
+      stddev_temperature: 'Temperature std. deviation',
+      max_humidity: 'Max. humidity',
+      min_humidity: 'Min. humidity',
+      stddev_humidity: 'Humidity std. deviation',
+      max_pressure: 'Max. pressure',
+      min_pressure: 'Min. pressure',
+      max_lux: 'Max. luminosity',
+      max_uvi: 'Max. UV Index'
+    };
+    return labels[key] || this.titleCaseKey(key);
+  }
+
+  private titleCaseKey(key: string): string {
+    return key
+      .replace(/_/g, ' ')
+      .split(' ')
+      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ');
+  }
+
+  formatValue(key: string, value: any): string {
+    if (value === null || value === undefined || value === '') {
+      return 'N/A';
+    }
+
+    const numeric = typeof value === 'number' ? value : Number(value);
+    if (!Number.isFinite(numeric)) {
+      return String(value);
+    }
+
+    const formatted = numeric.toFixed(2);
+    const unit = this.getFieldUnit(key);
+    return `${formatted}${unit ? ' ' + unit : ''}`;
+  }
+
+  private getFieldUnit(key: string): string {
+    const units: { [field: string]: string } = {
+      temperature: '°C',
+      avg_temperature: '°C',
+      max_temperature: '°C',
+      min_temperature: '°C',
+      stddev_temperature: '°C',
+      humidity: '%',
+      avg_humidity: '%',
+      max_humidity: '%',
+      min_humidity: '%',
+      stddev_humidity: '%',
+      pressure: 'hPa',
+      avg_pressure: 'hPa',
+      max_pressure: 'hPa',
+      min_pressure: 'hPa',
+      lux: 'lx',
+      avg_lux: 'lx',
+      max_lux: 'lx',
+      uvi: '',
+      avg_uvi: '',
+      max_uvi: '',
+      solar_irradiance: 'W/m2',
+      avg_solar_irradiance: 'W/m2',
+      wind_speed: 'km/h',
+      avg_wind_speed: 'km/h',
+      max_gust_speed: 'km/h',
+      gust_speed: 'km/h',
+      stddev_wind_speed: 'km/h',
+      wind_direction: '°',
+      avg_wind_direction: '°',
+      max_gust_direction: '°',
+      gust_direction: '°',
+      rainfall: 'mm',
+      sum_rainfall: 'mm',
+      stddev_rainfall: 'mm',
+      wind_run: 'km'
+    };
+    return units[key] || '';
+  }
+
   // Calcular una fecha N horas atrás desde ahora y devolver en HORA LOCAL
   private getDateHoursAgo(hours: number): string {
     const date = new Date();

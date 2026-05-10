@@ -1,6 +1,4 @@
-/* Background sky
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-*/
+/* Background sky */
 
 .space-bg {
     height: 100vh;
@@ -78,34 +76,16 @@
     width: 50vh;
     z-index: 4;
     border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    -o-border-radius: 100%;
     background: radial-gradient(#13d8f5, #0889ec);
-    background: -webkit-radial-gradient(#13d8f5, #0889ec);
-    background: -moz-radial-gradient(#13d8f5, #0889ec);
-    background: -o-radial-gradient(#13d8f5, #0889ec);
     box-shadow: 0 0 50px #f5c91a;
-    -webkit-box-shadow: 0 0 50px #f5c91a;
-    -moz-box-shadow: 0 0 50px #f5c91a;
-    -o-box-shadow: 0 0 50px #f5c91a;
-    -webkit-animation: sunFire 4s infinite alternate;
-    -moz-animation: sunFire 4s infinite alternate;
-    -o-animation: sunFire 4s infinite alternate;
     animation: sunFire 4s infinite alternate;
 }
 
 @keyframes sunFire {
     from {
-        -webkit-box-shadow: 0 0 50px #13d8f5;
-        -moz-box-shadow: 0 0 50px #13d8f5;
-        -o-box-shadow: 0 0 50px #13d8f5;
         box-shadow: 0 0 50px #13d8f5;
     }
     to {
-        -webkit-box-shadow: 0 0 100px #13d8f5;
-        -moz-box-shadow: 0 0 100px #13d8f5;
-        -o-box-shadow: 0 0 100px #13d8f5;
         box-shadow: 0 0 100px #13d8f5;
     }
 }
@@ -120,34 +100,16 @@
     width: 10vh;
     z-index: 4;
     border-radius: 100%;
-    -webkit-border-radius: 100%;
-    -moz-border-radius: 100%;
-    -o-border-radius: 100%;
     background: radial-gradient(#d8dcdd, #838384);
-    background: -webkit-radial-gradient(#d8dcdd, #838384);
-    background: -moz-radial-gradient(#d8dcdd, #838384);
-    background: -o-radial-gradient(#d8dcdd, #838384);
     box-shadow: 0 0 25px #d8dcdd;
-    -webkit-box-shadow: 0 0 25px #d8dcdd;
-    -moz-box-shadow: 0 0 25px #d8dcdd;
-    -o-box-shadow: 0 0 25px #d8dcdd;
-    -webkit-animation: moonGlow 4s infinite alternate;
-    -moz-animation: moonGlow 4s infinite alternate;
-    -o-animation: moonGlow 4s infinite alternate;
     animation: moonGlow 4s infinite alternate;
 }
 
 @keyframes moonGlow {
     from {
-        -webkit-box-shadow: 0 0 25px #d8dcdd;
-        -moz-box-shadow: 0 0 25px #d8dcdd;
-        -o-box-shadow: 0 0 25px #d8dcdd;
         box-shadow: 0 0 25px #d8dcdd;
     }
     to {
-        -webkit-box-shadow: 0 0 50px #d8dcdd;
-        -moz-box-shadow: 0 0 50px #d8dcdd;
-        -o-box-shadow: 0 0 50px #d8dcdd;
         box-shadow: 0 0 50px #d8dcdd;
     }
 }
@@ -174,7 +136,20 @@
     z-index: 5;
 }
 
-// Responsive para tablet
+.observatory-title-1 {
+    position: relative;
+    top: -14vh;
+    left: 5vw;
+    width: 70vw;
+    font-size: 70px;
+    font-weight: bold;
+    color: white;
+    z-index: 5;
+}
+
+
+/* Tablet */
+
 @media (max-width: 1024px) {
     .sun {
         height: 40vh;
@@ -193,78 +168,123 @@
         width: 80vw;
     }
 
+    .observatory-title-1 {
+        font-size: 50px;
+        width: 80vw;
+    }
+
     .pre-welcome {
         font-size: 16px;
     }
 }
 
-// Responsive para móvil
+
+/* Móvil */
+
 @media (max-width: 768px) {
+
+    // Sol arriba derecha, parte puede quedar detrás del título, z-index bajo
     .sun {
-        height: 30vh;
-        width: 30vh;
-        top: 35%;
-        left: 60%;
-        margin-left: -50px;
-        margin-top: -80px;
+        position: absolute;
+        height: 22vw;
+        width: 22vw;
+        top: 12vh;
+        right: 6vw;
+        left: auto;
+        margin: 0;
+        opacity: 0.8;
+        z-index: 2;
     }
 
+    // Luna abajo izquierda
     .moon {
-        height: 6vh;
-        width: 6vh;
-        top: 42%;
-        left: 55%;
-        margin-left: -30px;
-        margin-top: -60px;
-    }
-
-    .observatory-title {
-        font-size: 36px;
-        width: 90vw;
-        left: 2vw;
-        top: -12vh;
+        display: block;
+        position: absolute;
+        height: 12vw;
+        width: 12vw;
+        bottom: 6vh;
+        left: 6vw;
+        top: auto;
+        right: auto;
+        margin: 0;
+        opacity: 0.75;
+        z-index: 2;
     }
 
     .pre-welcome {
-        font-size: 14px;
-        top: -12vh;
-        left: 2vw;
+        position: absolute;
+        top: 38vh;
+        left: 6vw;
+        right: 6vw;
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: left;
+        z-index: 10;
+    }
+
+    .observatory-title {
+        position: absolute;
+        top: 42vh;
+        left: 6vw;
+        right: 6vw;
+        width: auto;
+        font-size: clamp(32px, 10vw, 52px);
+        line-height: 1.1;
+        font-weight: bold;
+        color: white;
+        text-align: left;
+        z-index: 10;
+    }
+
+    .observatory-title-1 {
+        position: absolute;
+        top: 50vh;
+        left: 6vw;
+        right: 6vw;
+        width: auto;
+        font-size: clamp(32px, 10vw, 52px);
+        line-height: 1.1;
+        font-weight: bold;
+        color: white;
+        text-align: left;
+        z-index: 10;
     }
 }
 
-// Responsive para móvil pequeño
-@media (max-width: 576px) {
+
+/* Móvil pequeño */
+
+@media (max-width: 480px) {
+
     .sun {
-        height: 25vh;
-        width: 25vh;
-        top: 30%;
-        left: 50%;
-        margin-left: -40px;
+        height: 24vw;
+        width: 24vw;
+        top: 10vh;
+        right: 4vw;
+        opacity: 0.7;
     }
 
     .moon {
-        height: 5vh;
-        width: 5vh;
-        top: 38%;
-        left: 45%;
-        margin-left: -20px;
-    }
-
-    .observatory-title {
-        font-size: 28px;
-        width: 95vw;
-        left: 1vw;
-        top: -10vh;
-        line-height: 1.2;
+        height: 14vw;
+        width: 14vw;
+        bottom: 5vh;
+        left: 5vw;
     }
 
     .pre-welcome {
-        font-size: 12px;
-        top: -10vh;
-        left: 1vw;
+        top: 36vh;
+        font-size: 11px;
     }
 
-    .space-bg {
-        height: 100vh;
+    .observatory-title {
+        top: 40vh;
+        font-size: clamp(28px, 9vw, 42px);
+    }
+
+    .observatory-title-1 {
+        top: 48vh;
+        font-size: clamp(28px, 9vw, 42px);
     }
 }
