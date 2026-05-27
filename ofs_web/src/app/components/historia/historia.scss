@@ -23,29 +23,41 @@
 
 .historia-content {
     display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.historia-top {
+    display: flex;
     gap: 30px;
     align-items: flex-start;
 }
 
 .historia-img {
-    width: 350px;
-    height: auto;
-    border-radius: 8px;
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
     object-fit: cover;
     flex-shrink: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.historia-text {
+.historia-top-text,
+.historia-bottom {
     flex: 1;
+}
 
-    p {
-        font-size: 16px;
-        color: #333;
-        margin-bottom: 15px;
-        text-align: justify;
-        line-height: 1.6;
-    }
+.historia-top-text p,
+.historia-bottom p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: justify;
+    line-height: 1.6;
+}
+
+.historia-bottom p:last-child {
+    margin-bottom: 0;
 }
 
 // Responsive para tablet
@@ -62,7 +74,8 @@
         width: 280px;
     }
 
-    .historia-text p {
+    .historia-top-text p,
+    .historia-bottom p {
         font-size: 15px;
     }
 }
@@ -90,10 +103,12 @@
     .historia-img {
         width: 100%;
         max-width: 300px;
+        height: auto;
         margin: 0 auto;
     }
 
-    .historia-text p {
+    .historia-top-text p,
+    .historia-bottom p {
         font-size: 14px;
         text-align: left;
     }

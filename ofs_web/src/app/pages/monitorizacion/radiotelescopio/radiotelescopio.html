@@ -1,1 +1,57 @@
-<p>radiotelescopio works!</p>
+﻿<div class="radiotelescopio-container">
+  <div class="panel-lista">
+    <h2>Observaciones disponibles</h2>
+
+    <div class="lista-observaciones">
+       <div *ngFor="let obs of observacionesFiltradas"
+           class="observacion-card"
+         [class.selected]="observacionSeleccionada?.id === obs.id"
+         (click)="verObservacion(obs)">
+        <div class="card-header">
+          <span class="fecha">{{ obs.fecha }} {{ obs.hora }}</span>
+        </div>
+        <div class="card-body">
+          <div><strong>Localización:</strong> {{ obs.localizacion }}</div>
+          <div><strong>Azimut / Elevación:</strong> {{ obs.azimut }}° / {{ obs.elevacion }}°</div>
+          <div><strong>Archivo:</strong> {{ obs.archivo_nombre }}</div>
+        </div>
+      </div>
+      <div *ngIf="observacionesFiltradas.length === 0" class="sin-datos">
+        No hay observaciones disponibles. Añade tus CSVs en el servicio o en assets/observaciones.
+      </div>
+    </div>
+
+    <div class="detalle-seleccion" *ngIf="observacionSeleccionada">
+      <h3>Datos seleccionados</h3>
+      <div class="detalle-row"><strong>Fecha:</strong> {{ observacionSeleccionada.fecha }}</div>
+      <div class="detalle-row"><strong>Hora:</strong> {{ observacionSeleccionada.hora }}</div>
+      <div class="detalle-row"><strong>Localización:</strong> {{ observacionSeleccionada.localizacion }}</div>
+      <div class="detalle-row"><strong>Azimut:</strong> {{ observacionSeleccionada.azimut }}°</div>
+      <div class="detalle-row"><strong>Elevación:</strong> {{ observacionSeleccionada.elevacion }}°</div>
+      <div class="detalle-row"><strong>Archivo:</strong> {{ observacionSeleccionada.archivo_nombre }}</div>
+    </div>
+  </div>
+
+  <div class="panel-grafica">
+    <h2>Gráfico interactivo</h2>
+    <div *ngIf="!observacionSeleccionada" class="sin-datos">
+      Selecciona una observación a la izquierda para ver el espectro.
+    </div>
+
+    <div *ngIf="observacionSeleccionada">
+      <div class="grafica-container">
+        <canvas #espectroCanvas id="espectroCanvas" width="760" height="420"
+                (mousemove)="handleChartHover($event)"
+                (mouseleave)="clearHover()"
+                (click)="handleCanvasClick($event)"></canvas>
+      </div>
+
+      <div class="hover-info" *ngIf="hoverInfo">
+        <strong>Frecuencia:</strong> {{ hoverInfo.frecuencia.toFixed(3) }} MHz
+        • <strong>Intensidad:</strong> {{ hoverInfo.intensidad.toFixed(1) }}</div>
+
+      <div class="notas" *ngIf="observacionSeleccionada.notas">
+        <strong>Notas:</strong> {{ observacionSeleccionada.notas }}</div>
+    </div>
+  </div>
+</div>

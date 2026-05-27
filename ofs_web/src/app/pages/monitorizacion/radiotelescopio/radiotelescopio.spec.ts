@@ -8,7 +8,7 @@ describe('Radiotelescopio', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Radiotelescopio]
+      declarations: [Radiotelescopio]
     })
     .compileComponents();
 

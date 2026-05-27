@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-camaras',
-  imports: [],
   templateUrl: './camaras.html',
-  styleUrl: './camaras.scss'
+  styleUrls: ['./camaras.scss']
 })
 export class Camaras {
 

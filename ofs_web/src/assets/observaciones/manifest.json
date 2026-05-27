@@ -1,0 +1,13 @@
+[
+  {
+    "id": "2026-05-24_19.52.58.6_Anytown_0230_40_spectrum",
+    "fecha": "2026-05-24",
+    "hora": "19:52:58.6",
+    "localizacion": "Anytown",
+    "azimut": 230,
+    "elevacion": 40,
+    "frecuencia_centro": 1414,
+    "archivo_nombre": "2026-05-24_19.52.58.6_Anytown_0230_40_spectrum.csv",
+    "csv_url": "assets/observaciones/2026-05-24_19.52.58.6_Anytown_0230_40_spectrum.csv"
+  }
+]
