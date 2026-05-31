@@ -54,5 +54,16 @@
   "frecuencia_centro": 1414,
   "archivo_nombre": "2026-05-31_00.34.05.5_Villaviciosa de Odón_120_35_spectrum.csv",
   "csv_url": "assets/observaciones/2026-05-31_00.34.05.5_Villaviciosa de Odón_120_35_spectrum.csv"
+  },
+  {
+      "id": "2026-05-31_00.50.06.5_Villaviciosa de Odón_60_35_spectrum",
+  "fecha": "2026-05-31",
+  "hora": "00:50:06.5",
+  "localizacion": "Villaviciosa de Odón",
+  "azimut": 60,
+  "elevacion": 35,
+  "frecuencia_centro": 1414,
+  "archivo_nombre": "2026-05-31_00.50.06.5_Villaviciosa de Odón_60_35_spectrum.csv",
+  "csv_url": "assets/observaciones/2026-05-31_00.50.06.5_Villaviciosa de Odón_60_35_spectrum.csv"
   }
 ]
