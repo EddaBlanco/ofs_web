@@ -79,6 +79,44 @@ h2 {
   margin-bottom: 6px;
 }
 
+.acciones-seleccion {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #333;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-descargar {
+  padding: 12px 18px;
+  min-width: 180px;
+  border: none;
+  border-radius: 8px;
+  background: #2e86de;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  font-weight: 700;
+}
+
+.btn-descargar:hover:not(:disabled) {
+  background: #4b98e0;
+  transform: translateY(-1px);
+}
+
+.btn-descargar:disabled {
+  background: #4a657a;
+  color: #d3d7de;
+  cursor: not-allowed;
+}
+
+.info-descarga {
+  color: #99a3b5;
+  font-size: 0.9rem;
+}
+
 .panel-grafica {
   display: flex;
   flex-direction: column;

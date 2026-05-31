@@ -8,6 +8,51 @@
     "elevacion": 40,
     "frecuencia_centro": 1414,
     "archivo_nombre": "2026-05-24_19.52.58.6_Anytown_0230_40_spectrum.csv",
-    "csv_url": "assets/observaciones/2026-05-24_19.52.58.6_Anytown_0230_40_spectrum.csv"
+    "csv_url": "assets/observaciones/2026-05-24_19.52.58.6_Anytown_0230_40_spectrum.csv",
+    "notas": "Segunda observación sin una buena calibración"
+  },
+  {
+    "id": "2026-05-24_19.47.56.6_Anytown_200_40_spectrum",
+    "fecha": "2026-05-24",
+    "hora": "19:47:56.6",
+    "localizacion": "Anytown",
+    "azimut": 200,
+    "elevacion": 40,
+    "frecuencia_centro": 1414,
+    "archivo_nombre": "2026-05-24_19.47.56.6_Anytown_200_40_spectrum.csv",
+    "csv_url": "assets/observaciones/2026-05-24_19.47.56.6_Anytown_200_40_spectrum.csv"
+  },
+  {
+  "id": "2026-05-31_00.38.20.5_Villaviciosa de Odón_135_30_spectrum",
+  "fecha": "2026-05-31",
+  "hora": "00:38:20.5",
+  "localizacion": "Villaviciosa de Odón",
+  "azimut": 135,
+  "elevacion": 30,
+  "frecuencia_centro": 1414,
+  "archivo_nombre": "2026-05-31_00.38.20.5_Villaviciosa de Odón_135_30_spectrum.csv",
+  "csv_url": "assets/observaciones/2026-05-31_00.38.20.5_Villaviciosa de Odón_135_30_spectrum.csv"
+  },
+  {
+  "id": "2026-05-31_00.49.16.9_Villaviciosa de Odón_60_35_spectrum",
+  "fecha": "2026-05-31",
+  "hora": "00:49:16.9",
+  "localizacion": "Villaviciosa de Odón",
+  "azimut": 60,
+  "elevacion": 35,
+  "frecuencia_centro": 1414,
+  "archivo_nombre": "2026-05-31_00.49.16.9_Villaviciosa de Odón_60_35_spectrum.csv",
+  "csv_url": "assets/observaciones/2026-05-31_00.49.16.9_Villaviciosa de Odón_60_35_spectrum.csv",
+  "notas": "Observación apuntando a Cygnus."
+  },{
+    "id": "2026-05-31_00.34.05.5_Villaviciosa de Odón_120_35_spectrum",
+  "fecha": "2026-05-31",
+  "hora": "00:34:05.5",
+  "localizacion": "Villaviciosa de Odón",
+  "azimut": 120,
+  "elevacion": 35,
+  "frecuencia_centro": 1414,
+  "archivo_nombre": "2026-05-31_00.34.05.5_Villaviciosa de Odón_120_35_spectrum.csv",
+  "csv_url": "assets/observaciones/2026-05-31_00.34.05.5_Villaviciosa de Odón_120_35_spectrum.csv"
   }
 ]

@@ -1,6 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Observacion } from '../models/observacion';
+import manifestData from '../../assets/observaciones/manifest.json';
+
+const MANIFEST_ITEMS: Observacion[] = manifestData as Observacion[];
 
 @Injectable({
   providedIn: 'root'
@@ -8,32 +13,67 @@ import { Observacion } from '../models/observacion';
 export class ObservacionService {
 
   private readonly STORAGE_KEY = 'observaciones_radiotelescopio';
+  private observacionesCache: Observacion[] | null = null;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  /**
-   * Obtiene TODAS las observaciones como Observable
-   * (necesario para el componente con subscribe)
-   */
-  listarObservaciones(): Observable<Observacion[]> {
-    const observaciones = this.obtenerTodas();
-    return of(observaciones);
+  private assetUrl(relativePath: string): string {
+    const baseElement = document.querySelector('base');
+    const baseHref = baseElement?.getAttribute('href') || '/';
+    const normalizedBase = baseHref.endsWith('/') ? baseHref : `${baseHref}/`;
+    return `${normalizedBase}${relativePath.replace(/^\/+/, '')}`;
+  }
+
+  private normalizeObservaciones(items: Observacion[]): Observacion[] {
+    return items.map(item => {
+      const csvUrl = item.csv_url
+        ? this.assetUrl(item.csv_url)
+        : item.archivo_nombre
+          ? this.assetUrl(`assets/observaciones/${item.archivo_nombre}`)
+          : undefined;
+
+      return {
+        ...item,
+        csv_url: csvUrl,
+        csv_data: item.csv_data ?? undefined
+      };
+    });
   }
 
   /**
-   * Obtiene el CSV completo de una observación
-   * Como tú guardas el CSV dentro de la propia observación (csv_data),
-   * simplemente devolvemos la misma observación.
+   * Obtiene TODAS las observaciones desde manifest.json.
+   */
+  listarObservaciones(): Observable<Observacion[]> {
+    if (this.observacionesCache) {
+      console.log('[ObservacionService] usando cache de observaciones:', this.observacionesCache.length);
+      return of(this.observacionesCache);
+    }
+
+    const items = this.normalizeObservaciones(MANIFEST_ITEMS);
+    console.log('[ObservacionService] manifest cargado en build-time, filas:', items.length);
+    this.observacionesCache = items;
+    return of(items);
+  }
+
+  /**
+   * Obtiene el CSV completo de una observación desde el archivo referenciado en manifest.json.
    */
   obtenerCsv(observacion: Observacion): Observable<Observacion> {
-    // Si por casualidad no tuviera csv_data, intentamos recuperarlo desde localStorage
-    if (!observacion.csv_data && observacion.id) {
-      const completa = this.obtenerPorId(observacion.id);
-      if (completa) {
-        return of(completa);
-      }
+    if (observacion.csv_data) {
+      return of(observacion);
     }
-    return of(observacion);
+
+    if (!observacion.csv_url) {
+      return of(observacion);
+    }
+
+    return this.http.get(observacion.csv_url, { responseType: 'text' }).pipe(
+      map(csv_data => ({ ...observacion, csv_data })),
+      catchError(error => {
+        console.error('Error cargando CSV:', error);
+        return of(observacion);
+      })
+    );
   }
 
   // Guardar una nueva observación

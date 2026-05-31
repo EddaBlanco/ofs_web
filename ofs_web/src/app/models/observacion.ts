@@ -7,7 +7,8 @@ export interface Observacion {
   elevacion: number;       // grados
   frecuencia_centro: number; // MHz
   archivo_nombre: string;   // nombre del CSV
-  csv_data: string;         // contenido del CSV
+  csv_url?: string;         // ruta al CSV en assets
+  csv_data?: string;        // contenido del CSV
   pico_frecuencia?: number; // para mostrar después
   pico_intensidad?: number;
   notas?: string;

@@ -1,18 +1,19 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { ObservacionService } from '../../../services/observacion';
 import { Observacion } from '../../../models/observacion';
 
 @Component({
   selector: 'app-radiotelescopio',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, FormsModule],
+  imports: [CommonModule, NgFor, NgIf],
   templateUrl: './radiotelescopio.html',
   styleUrls: ['./radiotelescopio.scss']
 })
-export class Radiotelescopio implements OnInit, AfterViewInit {
+export class Radiotelescopio implements OnInit, AfterViewInit, OnDestroy {
   
+  //elemento canvas para dibujar el espectro
   @ViewChild('espectroCanvas') espectroCanvas!: ElementRef<HTMLCanvasElement>;
   
   // Lista de observaciones
@@ -27,13 +28,18 @@ export class Radiotelescopio implements OnInit, AfterViewInit {
   puntoSeleccionado: { frecuencia: number; intensidad: number } | null = null;
   
   // Estados de UI
-  cargando: boolean = false;
+  cargandoLista: boolean = false;
+  cargandoCsv: boolean = false;
+  csvDisponible: boolean = false;
+  private csvSubscription?: Subscription;
   busqueda: string = '';
   ordenAscendente: boolean = true;
   tipoOrden: 'fecha' | 'localizacion' | 'pico' = 'fecha';
+  //skyLat: number = 40.4168;
+  //skyLon: number = -3.7038;
   
   constructor(private obsService: ObservacionService) {}
-  
+  //Cargo las observaciones del servicio
   ngOnInit() {
     this.cargarObservaciones();
   }
@@ -41,20 +47,30 @@ export class Radiotelescopio implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // El canvas se inicializa cuando se selecciona una observación
   }
-  
+  /*
+  getFechaObservacion(obs: Observacion): Date {
+    const horaNormalizada = obs.hora.replace(/\./g, ':');
+    const fechaIso = `${obs.fecha}T${horaNormalizada}`;
+    const fecha = new Date(fechaIso);
+    return isNaN(fecha.getTime()) ? new Date(`${obs.fecha} ${horaNormalizada}`) : fecha;
+  }
+  */
   // ==================== CARGA DE DATOS ====================
   
   cargarObservaciones() {
-    this.cargando = true;
+    console.log('[Radiotelescopio] iniciar carga de observaciones');
+    this.cargandoLista = true;
     this.obsService.listarObservaciones().subscribe({
       next: (items) => {
+        console.log('[Radiotelescopio] observaciones recibidas:', items.length, items);
         this.observaciones = items;
         this.filtrarYOrdenar();
-        this.cargando = false;
+        console.log('[Radiotelescopio] observaciones filtradas:', this.observacionesFiltradas.length);
+        this.cargandoLista = false;
       },
       error: (err) => {
         console.error('Error cargando observaciones:', err);
-        this.cargando = false;
+        this.cargandoLista = false;
       }
     });
   }
@@ -112,23 +128,33 @@ export class Radiotelescopio implements OnInit, AfterViewInit {
   
   seleccionarObservacion(obs: Observacion) {
     if (this.observacionSeleccionada?.id === obs.id) return;
-    
-    this.cargando = true;
+
+    this.csvSubscription?.unsubscribe();
+    this.cargandoCsv = true;
+    this.csvDisponible = false;
     this.observacionSeleccionada = obs;
     this.hoverInfo = null;
     this.picoInfo = null;
-    
-    this.obsService.obtenerCsv(obs).subscribe({
+    this.puntoSeleccionado = null;
+    this.datosEspectro = [];
+    if (this.espectroCanvas?.nativeElement) {
+      this.dibujarGrafico();
+    }
+
+    this.csvSubscription = this.obsService.obtenerCsv(obs).subscribe({
       next: (fullObs) => {
         this.observacionSeleccionada = fullObs;
+        this.cargandoCsv = false;
+        this.csvDisponible = !!fullObs.csv_data;
         if (fullObs.csv_data) {
-          this.procesarCSV(fullObs.csv_data);
+          const csvData = fullObs.csv_data;
+          setTimeout(() => this.procesarCSV(csvData), 0);
         }
-        this.cargando = false;
       },
       error: (err) => {
         console.error('Error cargando CSV:', err);
-        this.cargando = false;
+        this.cargandoCsv = false;
+        this.csvDisponible = false;
       }
     });
   }
@@ -145,7 +171,7 @@ export class Radiotelescopio implements OnInit, AfterViewInit {
       const [freqStr, intStr] = lines[i].split(',');
       if (freqStr && intStr) {
         datosTemp.push({
-          frecuencia: parseFloat(freqStr), // CSV already in MHz
+          frecuencia: parseFloat(freqStr), 
           intensidad: parseFloat(intStr)
         });
       }
@@ -200,6 +226,9 @@ export class Radiotelescopio implements OnInit, AfterViewInit {
     
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    
+    // Resetear transformación antes de volver a dibujar
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     
     // Aplicar escala al contexto para compensar devicePixelRatio
     ctx.scale(dpr, dpr);
@@ -488,5 +517,9 @@ export class Radiotelescopio implements OnInit, AfterViewInit {
   getIconoOrden(tipo: 'fecha' | 'localizacion' | 'pico'): string {
     if (this.tipoOrden !== tipo) return '↕️';
     return this.ordenAscendente ? '↓' : '↑';
+  }
+
+  ngOnDestroy() {
+    this.csvSubscription?.unsubscribe();
   }
 }
