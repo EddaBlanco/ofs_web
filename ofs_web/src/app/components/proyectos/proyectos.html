@@ -1,0 +1,33 @@
+<section class="projects" id="proyectos" aria-labelledby="proyectos-title">
+  <div class="projects-inner">
+    <p class="section-eyebrow">Nuestro trabajo</p>
+    <h2 id="proyectos-title">Proyectos</h2>
+    <p class="projects-lead">
+     Estas son las líneas de investigación y proyectos que llevamos a cabo en el Observatorio Francisco Sánchez. 
+     Desde la monitorización de cuerpos celestes hasta la divulgación astronómica, 
+     nuestro equipo se dedica a explorar y compartir el conocimiento del universo.
+    </p>
+
+    <ul class="projects-grid" role="list">
+      @for (project of projects; track project.title) {
+        <li
+          class="project-item"
+          [style]="{ '--card-accent': project.accent, '--card-accent-soft': project.accentSoft }"
+        >
+          <article class="project-card">
+            <span class="project-icon" aria-hidden="true">
+              <fa-icon [icon]="project.icon"></fa-icon>
+            </span>
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-description">{{ project.description }}</p>
+          </article>
+        </li>
+      }
+    </ul>
+
+    <a class="projects-cta" routerLink="/pages/equipamiento">
+      Ver el catálogo de equipamiento
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

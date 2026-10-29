@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-welcome',
   imports: [CommonModule],
@@ -7,14 +8,22 @@ import { CommonModule } from '@angular/common';
   styleUrl: './welcome.scss'
 })
 export class Welcome {
-    small = this.multipleBoxShadow(700);
-    medium = this.multipleBoxShadow(200);
-    big = this.multipleBoxShadow(100);
-multipleBoxShadow(n: number) {
-        let value = Math.floor(Math.random()*2000) + "px " + Math.floor(Math.random()*2000) + "px " + "#FFF";
-        for (let index = 2; index < n; index++) {
-            value = value + " , " +Math.floor(Math.random()*2000) + "px " + Math.floor(Math.random()*2000) + "px " + "#FFF";
-        }
-        return value; 
+  readonly small = this.multipleBoxShadow(700);
+  readonly medium = this.multipleBoxShadow(200);
+  readonly big = this.multipleBoxShadow(100);
+
+  /**
+   * Genera una capa de estrellas con box-shadow.
+   * Usamos un rango amplio para cubrir también pantallas grandes.
+   */
+  private multipleBoxShadow(count: number): string {
+    const randomPosition = () => Math.floor(Math.random() * 2600);
+    const shadows: string[] = [];
+
+    for (let index = 0; index < count; index++) {
+      shadows.push(`${randomPosition()}px ${randomPosition()}px #ffffff`);
     }
+
+    return shadows.join(', ');
+  }
 }

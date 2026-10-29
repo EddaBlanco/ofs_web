@@ -1,24 +1,158 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos globales del Observatorio Francisco Sánchez */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  background: #0a0e1a;
+:root {
+  color-scheme: dark;
+
+  /* Paleta base: azules noche del observatorio */
+  --ofs-bg-950: #05080f;
+  --ofs-bg-900: #070b14;
+  --ofs-bg-800: #0b1120;
+  --ofs-bg-700: #131c31;
+
+  --ofs-text: #eef3ff;
+  --ofs-text-muted: #a7b4cd;
+
+  --ofs-surface: rgba(255, 255, 255, 0.045);
+  --ofs-surface-strong: rgba(255, 255, 255, 0.075);
+  --ofs-border: rgba(255, 255, 255, 0.12);
+  --ofs-border-strong: rgba(255, 255, 255, 0.22);
+
+  /* Acentos que comparten el hero y las tarjetas de proyectos */
+  --ofs-cyan: #13d8f5;
+  --ofs-gold: #f5c91a;
+  --ofs-violet: #9b8cff;
+  --ofs-teal: #4fd1a5;
+  --ofs-pink: #f472b6;
+
+  --ofs-radius: 16px;
+  --ofs-max-width: 1160px;
+  --ofs-navbar-height: 64px;
 }
 
-// Estilos responsivos globales
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  scrollbar-color: #3a4a68 var(--ofs-bg-950);
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--ofs-text);
+  background-color: var(--ofs-bg-950);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Un único fondo para toda la web. Las secciones son transparentes encima. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 12% -8%, rgba(19, 216, 245, 0.12), transparent 65%),
+    radial-gradient(ellipse 60% 45% at 92% 8%, rgba(155, 140, 255, 0.1), transparent 65%),
+    radial-gradient(ellipse 80% 55% at 50% 110%, rgba(27, 39, 53, 0.85), transparent 70%),
+    linear-gradient(180deg, #090e19 0%, #05080f 100%);
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: #7fe6f7;
+}
+
+/* Foco visible y consistente (WCAG 2.4.7 / 2.4.11) */
+:focus-visible {
+  outline: 3px solid var(--ofs-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(19, 216, 245, 0.3);
+  color: #ffffff;
+}
+
+/* Utilidades reutilizables */
+.section-eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ofs-cyan);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Enlace para saltar al contenido (WCAG 2.4.1) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 10px 10px;
+  background: var(--ofs-cyan);
+  color: #051018;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: #051018;
+}
+
+/* Scrollbar coherente con el tema oscuro */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a4a68 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ofs-bg-950);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d3a55;
+  border: 2px solid var(--ofs-bg-950);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3e4f72;
+}
+
+/* Ajustes responsivos de formularios y botones (no reducimos todos los títulos) */
 @media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 1.25rem;
-  }
-
   .container-fluid {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -46,14 +180,6 @@ html, body {
 }
 
 @media (max-width: 576px) {
-  body {
-    font-size: 13px;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 1.1rem;
-  }
-
   .form-label {
     font-size: 0.8rem;
   }
@@ -67,5 +193,21 @@ html, body {
   .btn {
     padding: 0.25rem 0.5rem;
     font-size: 0.8rem;
+  }
+}
+
+/* WCAG 2.2 / 2.3.3: respetar la preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

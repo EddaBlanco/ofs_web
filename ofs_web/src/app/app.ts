@@ -1,15 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { Welcome } from "./components/welcome/welcome";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Footer } from "./components/footer/footer";
-import { Landing } from "./components/landing/landing";
-import{ routes } from './app.routes';
 import { Navbar } from './components/navbar/navbar';
+import { Footer } from './components/footer/footer';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FontAwesomeModule, Navbar, HttpClientModule],
+  imports: [RouterOutlet, Navbar, Footer],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-footer',
   imports: [FontAwesomeModule],
@@ -9,12 +10,9 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './footer.scss'
 })
 export class Footer {
-    faTwitter = faTwitter;
-    faFacebook = faFacebook;
-    faInstagram = faInstagram;
-    faMapMarkerAlt = faMapMarkerAlt;
+  readonly year = new Date().getFullYear();
+  readonly faTwitter = faTwitter;
+  readonly faFacebook = faFacebook;
+  readonly faInstagram = faInstagram;
+  readonly faMapMarkerAlt = faMapMarkerAlt;
 }
-
-
-
-

@@ -1,149 +1,150 @@
-.footer-blocks-row {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
-}
 .footer-bg {
-    //background-color: #121212;
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-    padding: 20px;
-    bottom: 0;
-    width: 100%;
-    display: block;
-    justify-content: center;
-    align-items: center;
-
+  width: 100%;
+  margin-top: auto;
+  padding: clamp(2.25rem, 5vw, 3.5rem) clamp(1rem, 4vw, 2rem) 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(5, 8, 15, 0), rgba(3, 5, 10, 0.92));
 }
 
 .footer-data {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    width: 80%;
-    flex-direction: column;
-       
-
-
-}
-.footer-block {
-color: white;
-  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  width: 100%;
+  max-width: var(--ofs-max-width);
+  margin: 0 auto;
 }
 
-.footer-block-content {
-    font-size: 14px;
+.footer-blocks-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.footer-block {
+  flex: 1 1 280px;
+  color: #ffffff;
 }
 
 .footer-block-title {
-    font-size: 12px;
-    color: white;
-    font-weight: bold;
-    margin-bottom: 10px;
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ofs-text-muted);
+}
+
+.footer-block-content {
+  font-size: 0.9rem;
+}
+
+.footer-contact {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  max-width: 460px;
+  color: #dbe4f5;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.footer-contact:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 .footer-icon {
-    display: inline-block;
-    color: white;
-    margin: 2px;
-    font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  font-size: 1.05rem;
+  color: var(--ofs-cyan);
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--ofs-border);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.footer-social a:hover {
+  color: var(--ofs-cyan);
+  border-color: var(--ofs-cyan);
+  background-color: rgba(19, 216, 245, 0.1);
 }
 
 .footer-logos {
-    flex: 1;
-    display: flex;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-        gap: 10px;
-
-
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
+
 .footer-logo {
-    height: 60px;
-    width: auto;
-    margin: 5px;
+  width: auto;
+  height: 52px;
+  object-fit: contain;
 }
 
-// Responsive footer
+.footer-copy {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--ofs-text-muted);
+}
+
+/* Móvil */
 @media (max-width: 768px) {
   .footer-blocks-row {
-    gap: 20px;
     flex-direction: column;
-  }
-
-  .footer-data {
-    width: 95%;
+    gap: 1.75rem;
   }
 
   .footer-block {
-    align-items: center;
-    text-align: center;
-  }
-
-  .footer-block-content {
-    font-size: 12px;
-  }
-
-  .footer-block-title {
-    font-size: 11px;
-  }
-
-  .footer-icon {
-    font-size: 16px;
-    margin: 1px;
+    flex-basis: auto;
   }
 
   .footer-logo {
-    height: 40px;
+    height: 42px;
   }
 }
 
 @media (max-width: 576px) {
   .footer-bg {
-    padding: 12px;
+    padding: 2rem 1rem 1.25rem;
   }
 
-  .footer-data {
-    width: 100%;
-  }
-
-  .footer-blocks-row {
-    gap: 12px;
-  }
-
-  .footer-block {
-    width: 100%;
-  }
-
-  .footer-block-content {
-    font-size: 11px;
-  }
-
-  .footer-block-title {
-    font-size: 10px;
-  }
-
-  .footer-icon {
-    font-size: 14px;
-  }
-
-  .footer-logos {
-    gap: 5px;
+  .footer-contact {
+    font-size: 0.85rem;
   }
 
   .footer-logo {
-    height: 30px;
+    height: 34px;
+  }
+
+  .footer-copy {
+    font-size: 0.72rem;
   }
 }
-    

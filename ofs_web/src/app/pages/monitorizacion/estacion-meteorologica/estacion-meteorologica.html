@@ -1,4 +1,8 @@
 <div class="container-fluid px-2 px-md-3">
+	<div class="estacion-logo-wrap mt-3" role="img" aria-label="PicoWeather">
+		<img src="assets/img/logos/picoWeather.png" alt="" class="estacion-logo estacion-logo--mark">
+		<img src="assets/img/logos/name_pico.png" alt="" class="estacion-logo estacion-logo--name">
+	</div>
 	<h2 class="text-white mt-2 mb-3">Estación meteorológica</h2>
 
 	<div class="row g-2">
@@ -7,25 +11,25 @@
 			<form (ngSubmit)="queryData()" class="mb-3">
 				<div class="row g-2 align-items-end">
 					<div class="col-12 col-sm-6 col-md-auto">
-						<label class="form-label text-white form-label-sm">Timezone</label>
-						<input class="form-control form-control-sm" [(ngModel)]="timezone" name="timezone" />
+						<label class="form-label text-white form-label-sm" for="zona-horaria">Zona horaria</label>
+						<input id="zona-horaria" class="form-control form-control-sm" [(ngModel)]="timezone" name="timezone" />
 					</div>
 					<div class="col-12 col-sm-6 col-md-auto">
-						<label class="form-label text-white form-label-sm">Start</label>
-						<input type="datetime-local" class="form-control form-control-sm" [(ngModel)]="startTime" name="period_start" />
+						<label class="form-label text-white form-label-sm" for="periodo-inicio">Inicio</label>
+						<input id="periodo-inicio" type="datetime-local" class="form-control form-control-sm" [(ngModel)]="startTime" name="period_start" />
 					</div>
 					<div class="col-12 col-sm-6 col-md-auto">
-						<label class="form-label text-white form-label-sm">End</label>
-						<input type="datetime-local" class="form-control form-control-sm" [(ngModel)]="endTime" name="period_end" />
+						<label class="form-label text-white form-label-sm" for="periodo-fin">Fin</label>
+						<input id="periodo-fin" type="datetime-local" class="form-control form-control-sm" [(ngModel)]="endTime" name="period_end" />
 					</div>
 					<div class="col-12 col-sm-6 col-md-4">
-						<label class="form-label text-white form-label-sm">Granularity</label>
-						<select class="form-select form-select-sm" [(ngModel)]="granularity" (change)="onGranularityChange()" name="granularity">
-							<option value="raw">raw</option>
-							<option value="hour">hour</option>
-							<option value="day">day</option>
-							<option value="month">month</option>
-							<option value="year">year</option>
+						<label class="form-label text-white form-label-sm" for="granularidad">Granularidad</label>
+						<select id="granularidad" class="form-select form-select-sm" [(ngModel)]="granularity" (change)="onGranularityChange()" name="granularity">
+							<option value="raw">Sin agrupar</option>
+							<option value="hour">Hora</option>
+							<option value="day">Día</option>
+							<option value="month">Mes</option>
+							<option value="year">Año</option>
 						</select>
 					</div>
 

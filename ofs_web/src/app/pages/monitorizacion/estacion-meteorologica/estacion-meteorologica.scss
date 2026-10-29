@@ -1,3 +1,18 @@
+.estacion-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.estacion-logo--mark {
+  height: clamp(56px, 9vw, 86px);
+}
+
+.estacion-logo--name {
+  height: clamp(26px, 4vw, 40px);
+}
+
 .fields-selector {
   max-height: 400px;
   overflow-y: auto;
@@ -153,11 +168,9 @@
 }
 
 // Estilos para el acordeón de resultados
-.results-accordion {
-  margin-top: 1.5rem;
+.results-accordion {  margin-top: 1.5rem;
 
   .accordion-item {
-    transition: all 0.3s ease;
     background-color: #1a1f2e;
     border-color: #343a40;
 
@@ -226,4 +239,16 @@
       }
     }
   }
+}
+
+// WCAG 1.4.3: el azul de Bootstrap no alcanza 4.5:1 sobre el fondo oscuro
+.btn-outline-primary {
+  --bs-btn-color: #8ec5ff;
+  --bs-btn-border-color: #8ec5ff;
+  --bs-btn-hover-color: #051018;
+  --bs-btn-hover-bg: #8ec5ff;
+  --bs-btn-hover-border-color: #8ec5ff;
+  --bs-btn-active-color: #051018;
+  --bs-btn-active-bg: #8ec5ff;
+  --bs-btn-active-border-color: #8ec5ff;
 }

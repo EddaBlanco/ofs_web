@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { Radiotelescopio } from './radiotelescopio';
 
@@ -8,9 +11,9 @@ describe('Radiotelescopio', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [Radiotelescopio]
-    })
-    .compileComponents();
+      imports: [Radiotelescopio],
+      providers: [provideZonelessChangeDetection(), provideHttpClient(), provideHttpClientTesting()]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Radiotelescopio);
     component = fixture.componentInstance;

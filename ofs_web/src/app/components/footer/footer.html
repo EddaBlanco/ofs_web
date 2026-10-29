@@ -1,35 +1,102 @@
-<!-- Tiene el pie de pagina con los enlaces a las redes sociales y los logos-->
-<div class="footer-bg">
+<!-- Pie de página con contacto, redes sociales y logos -->
+<footer class="footer-bg">
   <div class="footer-data">
+    <h2 class="visually-hidden">Información y contacto del observatorio</h2>
+
     <div class="footer-blocks-row">
       <div class="footer-block">
-        <div class="footer-block-title">Contacto</div>
+        <h3 class="footer-block-title">Contacto</h3>
         <div class="footer-block-content">
-          <a class="white-text" href="https://www.google.com/maps/place/Escuela+Técnica+Superior+de+Ingenieros+Informáticos+de+la+Universidad+Politécnica+de+Madrid/@40.4054946,-3.8354464,15z/data=!4m5!3m4!1s0x0:0xdf7b007bb6904fa5!8m2!3d40.4054946!4d-3.8354464">
-            <fa-icon class="footer-icon" [icon]="faMapMarkerAlt" size="lg"></fa-icon>
-            Escuela Técnica Superior de Ingeniería Informática, 28660 Boadilla del Monte, Madrid
+          <a
+            class="footer-contact"
+            href="https://www.google.com/maps/place/Escuela+Técnica+Superior+de+Ingenieros+Informáticos+de+la+Universidad+Politécnica+de+Madrid/@40.4054946,-3.8354464,15z/data=!4m5!3m4!1s0x0:0xdf7b007bb6904fa5!8m2!3d40.4054946!4d-3.8354464"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <fa-icon class="footer-icon" [icon]="faMapMarkerAlt" aria-hidden="true"></fa-icon>
+            <span>
+              Escuela Técnica Superior de Ingeniería Informática, 28660 Boadilla del Monte, Madrid
+            </span>
           </a>
+          <div class="mt-2">
+            <a class="footer-contact" href="mailto:observatoriofsupm@gmail.com">
+              <svg
+                class="footer-icon"
+                viewBox="0 0 512 512"
+                width="1em"
+                height="1em"
+                fill="currentColor"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
+              </svg>
+              <span>observatoriofsupm&#64;gmail.com</span>
+            </a>
+          </div>
         </div>
       </div>
+
       <div class="footer-block">
-        <div class="footer-block-title">Síguenos</div>
-        <div class="footer-block-content">
-          <a href="https://twitter.com/cslabupm">
-            <fa-icon class="footer-icon" [icon]="faTwitter" size="lg"></fa-icon>
-          </a>
-          <a href="https://www.facebook.com/cslabupm/">
-            <fa-icon class="footer-icon" [icon]="faFacebook" size="lg"></fa-icon>
-          </a>
-          <a href="https://www.instagram.com/cslabupm/">
-            <fa-icon class="footer-icon" [icon]="faInstagram" size="lg"></fa-icon>
-          </a>
-        </div>
+        <h3 class="footer-block-title">Síguenos</h3>
+        <ul class="footer-social" role="list">
+          <li>
+            <a
+              href="https://twitter.com/cslabupm"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter de CSLab UPM"
+            >
+              <fa-icon [icon]="faTwitter" aria-hidden="true"></fa-icon>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.facebook.com/cslabupm/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook de CSLab UPM"
+            >
+              <fa-icon [icon]="faFacebook" aria-hidden="true"></fa-icon>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/cslabupm/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram de CSLab UPM"
+            >
+              <fa-icon [icon]="faInstagram" aria-hidden="true"></fa-icon>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
+
     <div class="footer-logos">
-      <img class="footer-logo" src="assets/img/logos/logo-upm.png">
-      <img class="footer-logo" src="assets/img/logos/logo-cslab-hz.png">
-      <img class="footer-logo" src="assets/img/logos/logo_ofs_dark.png">
+      <img
+        class="footer-logo"
+        src="assets/img/logos/upm_etsiinf.png"
+        alt="Universidad Politécnica de Madrid"
+        loading="lazy"
+      >
+      <img
+        class="footer-logo"
+        src="assets/img/logos/logo_ACM.png"
+        alt="CSLab UPM"
+        loading="lazy"
+      >
+      <img
+        class="footer-logo"
+        src="assets/img/logos/logo_ofs_dark.png"
+        alt="Observatorio Francisco Sánchez"
+        loading="lazy"
+      >
     </div>
+
+    <p class="footer-copy">
+      © {{ year }} Observatorio Francisco Sánchez · ACM &amp; ASCFI · UPM
+    </p>
   </div>
-</div>
+</footer>

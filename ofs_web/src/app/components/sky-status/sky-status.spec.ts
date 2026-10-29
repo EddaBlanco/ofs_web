@@ -1,19 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
 
-import { SkyStatus } from './sky-status';
+import { SkyStatusComponent } from './sky-status';
 
-describe('SkyStatus', () => {
-  let component: SkyStatus;
-  let fixture: ComponentFixture<SkyStatus>;
+describe('SkyStatusComponent', () => {
+  let component: SkyStatusComponent;
+  let fixture: ComponentFixture<SkyStatusComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SkyStatus]
-    })
-    .compileComponents();
+      providers: [provideZonelessChangeDetection()],
+      imports: [SkyStatusComponent]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(SkyStatus);
+    fixture = TestBed.createComponent(SkyStatusComponent);
     component = fixture.componentInstance;
+    component.fecha = new Date('2026-06-01T00:00:00Z');
     fixture.detectChanges();
   });
 

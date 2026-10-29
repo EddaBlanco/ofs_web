@@ -1,12 +1,25 @@
 .selected {
     background-color: #3c6396 !important;
+    border-color: var(--ofs-cyan) !important;
 }
 
 .button-filter {
     cursor: pointer;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
     padding: 5px 18px;
     margin: 5px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background-color: rgba(255, 255, 255, 0.04);
+    font: inherit;
+    color: #ffffff;
+}
+
+.button-filter:hover {
+    background-color: rgba(19, 216, 245, 0.14);
+    border-color: var(--ofs-cyan);
 }
 
 .image {

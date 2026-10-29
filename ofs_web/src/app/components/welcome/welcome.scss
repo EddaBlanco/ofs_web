@@ -1,290 +1,263 @@
-/* Background sky */
+:host {
+  display: block;
+}
 
+/* Fondo del hero. El degradado general vive en body::before. */
 .space-bg {
-    height: 100vh;
-    overflow: hidden;
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: calc(100svh - var(--ofs-navbar-height));
+  padding: clamp(3.5rem, 10vh, 7rem) clamp(1.25rem, 6vw, 6rem);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 55% 45% at 78% 72%, rgba(19, 216, 245, 0.16), transparent 60%),
+    linear-gradient(180deg, rgba(7, 11, 20, 0) 0%, rgba(5, 8, 15, 0.72) 100%);
 }
 
+/* Estrellas */
 .stars {
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    animation: animStar 50s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: animStar 50s linear infinite;
 }
 
-.stars:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 1px;
-    height: 1px;
-    background: transparent;
+.stars::after {
+  content: ' ';
+  position: absolute;
+  top: 2600px;
+  left: 0;
+  background: transparent;
+  border-radius: 50%;
 }
 
-.stars2 {
-    width: 2px;
-    height: 2px;
-    background: transparent;
-    animation: animStar 100s linear infinite;
+.stars-sm {
+  width: 1px;
+  height: 1px;
+  opacity: 0.75;
 }
 
-.stars2:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 2px;
-    height: 2px;
-    background: transparent;
+.stars-sm::after {
+  width: 1px;
+  height: 1px;
 }
 
-.stars3 {
-    width: 3px;
-    height: 3px;
-    background: transparent;
-    animation: animStar 150s linear infinite;
+.stars-md {
+  width: 2px;
+  height: 2px;
+  opacity: 0.85;
+  animation-duration: 90s;
 }
 
-.stars3:after {
-    content: " ";
-    position: absolute;
-    top: 2000px;
-    width: 3px;
-    height: 3px;
-    background: transparent;
+.stars-md::after {
+  width: 2px;
+  height: 2px;
+}
+
+.stars-lg {
+  width: 3px;
+  height: 3px;
+  animation-duration: 140s;
+}
+
+.stars-lg::after {
+  width: 3px;
+  height: 3px;
 }
 
 @keyframes animStar {
-    from {
-        transform: translateY(0px);
-    }
-    to {
-        transform: translateY(-2000px);
-    }
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-2600px);
+  }
 }
 
-
-/* Planets */
-
-.sun {
-    height: 50vh;
-    left: 75%;
-    position: relative;
-    top: 40%;
-    margin-top: -100px;
-    margin-left: -100px;
-    width: 50vh;
-    z-index: 4;
-    border-radius: 100%;
-    background: radial-gradient(#13d8f5, #0889ec);
-    box-shadow: 0 0 50px #f5c91a;
-    animation: sunFire 4s infinite alternate;
+/* Planetas decorativos */
+.planet {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-@keyframes sunFire {
-    from {
-        box-shadow: 0 0 50px #13d8f5;
-    }
-    to {
-        box-shadow: 0 0 100px #13d8f5;
-    }
+.planet-sun {
+  right: clamp(-180px, -8vw, -60px);
+  bottom: clamp(-220px, -18vh, -80px);
+  width: clamp(280px, 42vw, 580px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 34% 30%, #8ef3ff 0%, #13d8f5 36%, #0a72d4 72%, #073a8a 100%);
+  box-shadow: 0 0 140px rgba(19, 216, 245, 0.28);
+  opacity: 0.92;
+  animation: sunPulse 7s ease-in-out infinite alternate;
 }
 
-.moon {
-    height: 10vh;
-    left: 70%;
-    position: relative;
-    top: 47%;
-    margin-top: -100px;
-    margin-left: -100px;
-    width: 10vh;
-    z-index: 4;
-    border-radius: 100%;
-    background: radial-gradient(#d8dcdd, #838384);
-    box-shadow: 0 0 25px #d8dcdd;
-    animation: moonGlow 4s infinite alternate;
+.planet-moon {
+  right: clamp(8%, 18vw, 26%);
+  top: clamp(8%, 14vh, 18%);
+  width: clamp(80px, 10vw, 150px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 34% 30%, #f6f8ff 0%, #b3bed3 48%, #6c7891 100%);
+  box-shadow: 0 0 46px rgba(214, 226, 255, 0.22);
+  animation: moonFloat 9s ease-in-out infinite alternate;
 }
 
-@keyframes moonGlow {
-    from {
-        box-shadow: 0 0 25px #d8dcdd;
-    }
-    to {
-        box-shadow: 0 0 50px #d8dcdd;
-    }
+@keyframes sunPulse {
+  from {
+    box-shadow: 0 0 110px rgba(19, 216, 245, 0.24);
+  }
+
+  to {
+    box-shadow: 0 0 170px rgba(19, 216, 245, 0.38);
+  }
 }
 
+@keyframes moonFloat {
+  from {
+    transform: translateY(0);
+  }
 
-/* Welcome text */
+  to {
+    transform: translateY(-16px);
+  }
+}
+
+/* Texto principal */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 900px);
+}
 
 .pre-welcome {
-    position: relative;
-    font-size: 20px;
-    color: white;
-    top: -14vh;
-    left: 5vw;
+  margin: 0 0 0.85rem;
+  font-size: clamp(0.72rem, 0.4vw + 0.6rem, 0.9rem);
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--ofs-text-muted);
 }
 
 .observatory-title {
-    position: relative;
-    top: -14vh;
-    left: 5vw;
-    width: 70vw;
-    font-size: 70px;
-    font-weight: bold;
-    color: white;
-    z-index: 5;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
-.observatory-title-1 {
-    position: relative;
-    top: -14vh;
-    left: 5vw;
-    width: 70vw;
-    font-size: 70px;
-    font-weight: bold;
-    color: white;
-    z-index: 5;
+.observatory-title-main {
+  font-size: clamp(2.7rem, 6.2vw, 5.4rem);
+  color: #ffffff;
+  text-shadow: 0 10px 44px rgba(0, 0, 0, 0.5);
 }
 
+.observatory-title-name {
+  font-size: clamp(2.2rem, 5.1vw, 4.5rem);
+  background: linear-gradient(90deg, #ffffff 0%, #9fe9f7 55%, #cfc6ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 44px;
+  margin-top: clamp(1.75rem, 4vh, 2.75rem);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ofs-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-scroll:hover {
+  color: var(--ofs-cyan);
+  border-color: var(--ofs-cyan);
+}
+
+.hero-scroll-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
 
 /* Tablet */
-
 @media (max-width: 1024px) {
-    .sun {
-        height: 40vh;
-        width: 40vh;
-        left: 70%;
-    }
+  .planet-sun {
+    right: -16%;
+    bottom: -16%;
+    opacity: 0.8;
+  }
 
-    .moon {
-        height: 8vh;
-        width: 8vh;
-        left: 65%;
-    }
-
-    .observatory-title {
-        font-size: 50px;
-        width: 80vw;
-    }
-
-    .observatory-title-1 {
-        font-size: 50px;
-        width: 80vw;
-    }
-
-    .pre-welcome {
-        font-size: 16px;
-    }
+  .planet-moon {
+    right: 10%;
+    top: 12%;
+  }
 }
-
 
 /* Móvil */
-
 @media (max-width: 768px) {
+  .space-bg {
+    align-items: flex-end;
+    min-height: calc(100svh - 60px);
+    padding: 2.5rem 1.5rem 4.5rem;
+  }
 
-    // Sol arriba derecha, parte puede quedar detrás del título, z-index bajo
-    .sun {
-        position: absolute;
-        height: 22vw;
-        width: 22vw;
-        top: 12vh;
-        right: 6vw;
-        left: auto;
-        margin: 0;
-        opacity: 0.8;
-        z-index: 2;
-    }
+  .planet-sun {
+    right: -32%;
+    bottom: 12%;
+    width: 62vw;
+    opacity: 0.55;
+  }
 
-    // Luna abajo izquierda
-    .moon {
-        display: block;
-        position: absolute;
-        height: 12vw;
-        width: 12vw;
-        bottom: 6vh;
-        left: 6vw;
-        top: auto;
-        right: auto;
-        margin: 0;
-        opacity: 0.75;
-        z-index: 2;
-    }
+  .planet-moon {
+    right: 12%;
+    top: 14%;
+    width: 16vw;
+    opacity: 0.8;
+  }
 
-    .pre-welcome {
-        position: absolute;
-        top: 38vh;
-        left: 6vw;
-        right: 6vw;
-        font-size: 13px;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.6);
-        text-align: left;
-        z-index: 10;
-    }
+  .observatory-title-main {
+    font-size: clamp(2.1rem, 10.2vw, 3.4rem);
+  }
 
-    .observatory-title {
-        position: absolute;
-        top: 42vh;
-        left: 6vw;
-        right: 6vw;
-        width: auto;
-        font-size: clamp(32px, 10vw, 52px);
-        line-height: 1.1;
-        font-weight: bold;
-        color: white;
-        text-align: left;
-        z-index: 10;
-    }
+  .observatory-title-name {
+    font-size: clamp(1.5rem, 7.6vw, 2.9rem);
+  }
 
-    .observatory-title-1 {
-        position: absolute;
-        top: 50vh;
-        left: 6vw;
-        right: 6vw;
-        width: auto;
-        font-size: clamp(32px, 10vw, 52px);
-        line-height: 1.1;
-        font-weight: bold;
-        color: white;
-        text-align: left;
-        z-index: 10;
-    }
+  .hero-content {
+    padding-bottom: 2rem;
+  }
 }
 
-
-/* Móvil pequeño */
-
 @media (max-width: 480px) {
+  .space-bg {
+    padding: 2rem 1.25rem 3.5rem;
+  }
 
-    .sun {
-        height: 24vw;
-        width: 24vw;
-        top: 10vh;
-        right: 4vw;
-        opacity: 0.7;
-    }
+  .pre-welcome {
+    letter-spacing: 0.24em;
+  }
 
-    .moon {
-        height: 14vw;
-        width: 14vw;
-        bottom: 5vh;
-        left: 5vw;
-    }
-
-    .pre-welcome {
-        top: 36vh;
-        font-size: 11px;
-    }
-
-    .observatory-title {
-        top: 40vh;
-        font-size: clamp(28px, 9vw, 42px);
-    }
-
-    .observatory-title-1 {
-        top: 48vh;
-        font-size: clamp(28px, 9vw, 42px);
-    }
+  .planet-sun {
+    right: -46%;
+    bottom: 18%;
+    width: 70vw;
+    opacity: 0.45;
+  }
 }

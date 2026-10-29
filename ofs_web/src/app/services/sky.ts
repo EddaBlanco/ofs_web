@@ -53,11 +53,7 @@ export class SkyService {
     elevacionTelescopio: number
   ): SkyStatus {
     
-    const observer: Observer = {
-      latitude: latitud,
-      longitude: longitud,
-      height: 0
-    };
+    const observer = new Observer(latitud, longitud, 0);
     
     const time = MakeTime(fecha);
     

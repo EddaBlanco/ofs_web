@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { EstacionMeteorologica } from './estacion-meteorologica';
 
@@ -8,9 +11,9 @@ describe('EstacionMeteorologica', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EstacionMeteorologica]
-    })
-    .compileComponents();
+      imports: [EstacionMeteorologica],
+      providers: [provideZonelessChangeDetection(), provideHttpClient(), provideHttpClientTesting()]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EstacionMeteorologica);
     component = fixture.componentInstance;

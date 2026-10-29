@@ -6,13 +6,32 @@ import { Radiotelescopio } from './pages/monitorizacion/radiotelescopio/radiotel
 import { Equipamiento } from './pages/equipamiento/equipamiento';
 import { Home } from './components/home/home';
 
-
 export const routes: Routes = [
-{path: '', component: Home},    
-{ path: 'pages/monitorizacion', component: Monitorizacion },
-{ path: 'pages/monitorizacion/camaras', component: Camaras },
-{ path: 'pages/monitorizacion/estacion-meteorologica', component: EstacionMeteorologica },
-{ path: 'pages/monitorizacion/radiotelescopio', component: Radiotelescopio },
-{ path: 'pages/equipamiento', component: Equipamiento },
-{ path: '', redirectTo: 'monitorizacion', pathMatch: 'full' }
+  { path: '', component: Home, title: 'Inicio | Observatorio Francisco Sánchez' },
+  {
+    path: 'pages/monitorizacion',
+    component: Monitorizacion,
+    title: 'Monitorización | Observatorio Francisco Sánchez'
+  },
+  {
+    path: 'pages/monitorizacion/camaras',
+    component: Camaras,
+    title: 'Cámaras | Observatorio Francisco Sánchez'
+  },
+  {
+    path: 'pages/monitorizacion/estacion-meteorologica',
+    component: EstacionMeteorologica,
+    title: 'Estación meteorológica | Observatorio Francisco Sánchez'
+  },
+  {
+    path: 'pages/monitorizacion/radiotelescopio',
+    component: Radiotelescopio,
+    title: 'Radiotelescopio | Observatorio Francisco Sánchez'
+  },
+  {
+    path: 'pages/equipamiento',
+    component: Equipamiento,
+    title: 'Equipamiento | Observatorio Francisco Sánchez'
+  },
+  { path: '**', redirectTo: '' }
 ];

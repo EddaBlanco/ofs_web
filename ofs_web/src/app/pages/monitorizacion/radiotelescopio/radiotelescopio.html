@@ -3,19 +3,21 @@
     <h2>Observaciones disponibles</h2>
 
     <div class="lista-observaciones">
-       <div *ngFor="let obs of observacionesFiltradas"
+       <button *ngFor="let obs of observacionesFiltradas"
+           type="button"
            class="observacion-card"
          [class.selected]="observacionSeleccionada?.id === obs.id"
+         [attr.aria-pressed]="observacionSeleccionada?.id === obs.id"
          (click)="verObservacion(obs)">
-        <div class="card-header">
+        <span class="card-header">
           <span class="fecha">{{ obs.fecha }} {{ obs.hora }}</span>
-        </div>
-        <div class="card-body">
-          <div><strong>Localización:</strong> {{ obs.localizacion }}</div>
-          <div><strong>Azimut / Elevación:</strong> {{ obs.azimut }}° / {{ obs.elevacion }}°</div>
-          <div><strong>Archivo:</strong> {{ obs.archivo_nombre }}</div>
-        </div>
-      </div>
+        </span>
+        <span class="card-body">
+          <span><strong>Localización:</strong> {{ obs.localizacion }}</span>
+          <span><strong>Azimut / Elevación:</strong> {{ obs.azimut }}° / {{ obs.elevacion }}°</span>
+          <span><strong>Archivo:</strong> {{ obs.archivo_nombre }}</span>
+        </span>
+      </button>
       <div *ngIf="cargandoLista" class="sin-datos">
         Cargando observaciones desde el manifiesto estático...
       </div>
@@ -57,10 +59,19 @@
     <div *ngIf="observacionSeleccionada">
       <div class="grafica-container">
         <canvas #espectroCanvas id="espectroCanvas" width="760" height="420"
+                role="img"
+                tabindex="0"
+                aria-label="Gráfico del espectro de la observación seleccionada"
+                aria-describedby="grafico-ayuda"
                 (mousemove)="handleChartHover($event)"
                 (mouseleave)="clearHover()"
-                (click)="handleCanvasClick($event)"></canvas>
+                (click)="handleCanvasClick($event)"
+                (keydown)="handleCanvasKeydown($event)"></canvas>
       </div>
+      <p id="grafico-ayuda" class="visually-hidden">
+        Con el gráfico enfocado, usa las flechas izquierda y derecha para recorrer el espectro,
+        Inicio y Fin para ir a los extremos, y Escape para quitar la selección.
+      </p>
       <!--
       <div class="sky-status-container">
         <app-sky-status

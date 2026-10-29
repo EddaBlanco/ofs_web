@@ -1,14 +1,21 @@
+<!-- Hero de inicio: fondo espacial, título principal y decoración -->
+<section class="space-bg" aria-labelledby="hero-title">
+  <div class="stars stars-sm" [ngStyle]="{'box-shadow': small}" aria-hidden="true"></div>
+  <div class="stars stars-md" [ngStyle]="{'box-shadow': medium}" aria-hidden="true"></div>
+  <div class="stars stars-lg" [ngStyle]="{'box-shadow': big}" aria-hidden="true"></div>
 
-<!-- Pagina de inicio con la introducción muestra el texto del observatorio y el fondo-->
-<div class="space-bg">
-    <div class="stars" [ngStyle]="{'box-shadow': small}"></div>
-    <div class="stars2" [ngStyle]="{'box-shadow': medium}"></div>
-    <div class="stars3" [ngStyle]="{'box-shadow':big}"></div>
+  <div class="planet planet-sun" aria-hidden="true"></div>
+  <div class="planet planet-moon" aria-hidden="true"></div>
 
-    <div class="sun"></div>
-    <div class="moon"></div>
-    <div class="pre-welcome">Descubre el</div>
-    <div class="observatory-title">OBSERVATORIO</div>
-    <div class="observatory-title-1">FRANCISCO SÁNCHEZ</div>
-</div>
-
+  <div class="hero-content">
+    <p class="pre-welcome">Descubre el</p>
+    <h1 id="hero-title" class="observatory-title">
+      <span class="observatory-title-main">Observatorio</span>
+      <span class="observatory-title-name">Francisco Sánchez</span>
+    </h1>
+    <a class="hero-scroll" href="#quienes-somos">
+      Conocer el observatorio
+      <span class="hero-scroll-icon" aria-hidden="true">↓</span>
+    </a>
+  </div>
+</section>

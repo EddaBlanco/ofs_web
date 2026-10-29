@@ -500,6 +500,50 @@ export class Radiotelescopio implements OnInit, AfterViewInit, OnDestroy {
     this.onCanvasClick(event);
   }
 
+  /**
+   * Alternativa de teclado al ratón: recorre el espectro con las flechas y
+   * selecciona el punto enfocado. WCAG 2.1.1 (Keyboard).
+   */
+  handleCanvasKeydown(event: KeyboardEvent) {
+    if (this.datosEspectro.length === 0) return;
+
+    const total = this.datosEspectro.length;
+    const step = Math.max(1, Math.round(total / 40));
+    let index = this.puntoSeleccionado
+      ? this.datosEspectro.findIndex(
+          (p) => p.frecuencia === this.puntoSeleccionado?.frecuencia
+        )
+      : -1;
+
+    switch (event.key) {
+      case 'ArrowRight':
+        index = index < 0 ? 0 : Math.min(total - 1, index + step);
+        break;
+      case 'ArrowLeft':
+        index = index < 0 ? total - 1 : Math.max(0, index - step);
+        break;
+      case 'Home':
+        index = 0;
+        break;
+      case 'End':
+        index = total - 1;
+        break;
+      case 'Escape':
+        event.preventDefault();
+        this.puntoSeleccionado = null;
+        this.hoverInfo = null;
+        this.dibujarGrafico();
+        return;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    this.puntoSeleccionado = this.datosEspectro[index];
+    this.hoverInfo = { ...this.puntoSeleccionado };
+    this.dibujarGrafico();
+  }
+
   // ==================== UTILIDADES ====================
   
   descargarCSV(obs: Observacion) {

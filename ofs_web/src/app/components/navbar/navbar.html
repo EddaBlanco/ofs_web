@@ -1,25 +1,89 @@
+<!-- Barra de navegación principal -->
+<nav class="navbar navbar-expand-lg navbar-dark" aria-label="Navegación principal">
+  <a class="navbar-brand" routerLink="/" aria-label="Observatorio Francisco Sánchez, ir al inicio">
+    <img src="assets/img/logos/logo_ofs_dark.png" class="navbar-logo" alt="">
+  </a>
 
-<!--Sera la barra de navegacion de una pagina a otra estara arriba de welcome -->
-<nav class="navbar navbar-expand-lg navbar-dark z-depth-3" ngbDropdown>
-    <a class="navbar-brand" href="#">
-        <img src="assets/img/logos/logo_ofs_dark.png" class="navbar-logo" alt="OFS">
-    </a>
-    <button class="navbar-toggler" type="button" aria-controls="navbarContent" [attr.aria-expanded]="!isNavbarCollapsed" aria-label="Toggle navigation" (click)="toggleNavbarCollapsed()">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse" [class.collapse]="isNavbarCollapsed" id="navbarsDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="dropdown nav-item" ngbDropdown>
-                <a class="dropdown-toggle nav-link" id="id01" ngbDropdownToggle>Monitorización</a>
-                <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
-                    <a class="dropdown-item" [routerLink]="['pages/monitorizacion/camaras']" routerLinkActive="router-link-active">Cámaras</a>
-                    <a class="dropdown-item" [routerLink]="['pages/monitorizacion/estacion-meteorologica']">Estación meteorológica</a>
-                    <a class="dropdown-item" [routerLink]="['pages/monitorizacion/radiotelescopio']">Radiotelescopio</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['pages/equipamiento']">Equipamiento</a>
-            </li>
-        </ul>
+  <button
+    class="navbar-toggler"
+    type="button"
+    aria-controls="navbarContent"
+    [attr.aria-expanded]="!isNavbarCollapsed"
+    aria-label="Abrir o cerrar el menú de navegación"
+    (click)="toggleNavbarCollapsed()"
+  >
+    <span class="navbar-toggler-icon" aria-hidden="true"></span>
+  </button>
+
+  <div class="navbar-collapse" [class.collapse]="isNavbarCollapsed" id="navbarContent">
+    <div class="nav-segmented">
+      <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          ariaCurrentWhenActive="page"
+        >
+          Inicio
+        </a>
+      </li>
+
+      <li class="dropdown nav-item" ngbDropdown>
+        <button
+          type="button"
+          class="dropdown-toggle nav-link"
+          id="menu-monitorizacion"
+          ngbDropdownToggle
+          aria-controls="submenu-monitorizacion"
+        >
+          Monitorización
+        </button>
+        <div
+          class="dropdown-menu"
+          id="submenu-monitorizacion"
+          aria-labelledby="menu-monitorizacion"
+          ngbDropdownMenu
+        >
+          <a
+            class="dropdown-item"
+            routerLink="/pages/monitorizacion/camaras"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+          >
+            Cámaras
+          </a>
+          <a
+            class="dropdown-item"
+            routerLink="/pages/monitorizacion/estacion-meteorologica"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+          >
+            Estación meteorológica
+          </a>
+          <a
+            class="dropdown-item"
+            routerLink="/pages/monitorizacion/radiotelescopio"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+          >
+            Radiotelescopio
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/pages/equipamiento"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+        >
+          Equipamiento
+        </a>
+      </li>
+      </ul>
     </div>
+  </div>
 </nav>
