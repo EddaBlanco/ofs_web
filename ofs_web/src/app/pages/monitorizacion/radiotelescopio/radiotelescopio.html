@@ -91,4 +91,59 @@
         <strong>Notas:</strong> {{ observacionSeleccionada.notas }}</div>
     </div>
   </div>
+
+  <section class="panel-proyecto" aria-labelledby="titulo-proyecto">
+    <h2 id="titulo-proyecto">
+      <span class="titulo-texto">Cómo se realizó el proyecto</span>
+      <span class="titulo-badge">TFG · ETSIINF</span>
+    </h2>
+
+    <div class="proyecto-contenido">
+      <div class="proyecto-texto">
+        <p>
+          Este radiotelescopio nace como <strong>Trabajo de Fin de Grado (TFG)</strong> de la alumna Edda Rosa Blanco Pavón del Grado en
+          Ingeniería Informática de la ETSIINF (UPM), con la idea de demostrar que se puede construir
+          un instrumento de radioastronomía funcional y de bajo coste sin depender de grandes
+          infraestructuras. Su finalidad es detectar la <strong>línea de emisión de 21 cm del hidrógeno
+          neutro</strong> (1420,405 MHz), la señal que permite estudiar la distribución y el movimiento
+          del gas hidrógeno en nuestra galaxia.
+        </p>
+        <p>
+          Para ello se diseñó y construyó una <strong>antena de bocina</strong> optimizada para 1420 MHz,
+          se integró una cadena de recepción de bajo ruido con un <strong>LNA</strong> y un receptor
+          <strong>SDR</strong> que digitaliza la señal, y se desarrolló un <strong>espectrómetro digital en
+          GNU Radio</strong> basado en el proyecto <strong>DSPIRA</strong> junto con las herramientas de
+          procesamiento y visualización de los espectros que se muestran en esta página.
+        </p>
+        <p>
+          El sistema se instaló en el <strong>Observatorio Francisco Sánchez (OFS)</strong>, donde se
+          realizaron observaciones en distintas regiones del cielo que permitieron validar las
+          detecciones. Los datos obtenidos se publican aquí para que puedan consultarse y descargarse,
+          dejando a disposición del observatorio una nueva herramienta de observación y divulgación
+          científica.
+        </p>
+      </div>
+
+      <figure class="proyecto-figura">
+        <img src="assets/img/radiotelescopio/en-obs.jpeg"
+             alt="Radiotelescopio instalado en el Observatorio Francisco Sánchez"
+             loading="lazy" />
+        <figcaption>Radiotelescopio instalado en el Observatorio Francisco Sánchez (OFS).</figcaption>
+      </figure>
+    </div>
+
+    <app-animacion-radiotelescopio />
+
+    <div class="proyecto-recursos" *ngIf="recursos.length > 0">
+      <h3>Código y documentación</h3>
+      <ul class="recursos-lista">
+        <li *ngFor="let recurso of recursos">
+          <a [href]="recurso.url" target="_blank" rel="noopener noreferrer">
+            <span class="recurso-titulo">{{ recurso.titulo }}</span>
+            <span class="recurso-desc">{{ recurso.descripcion }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
 </div>

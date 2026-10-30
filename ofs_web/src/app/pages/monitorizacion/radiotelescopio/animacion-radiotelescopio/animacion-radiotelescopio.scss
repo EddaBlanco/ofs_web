@@ -1,0 +1,192 @@
+:host {
+  display: block;
+}
+
+.rt-animacion {
+  position: relative;
+  max-width: 860px;
+  margin: 18px auto 20px;
+  border: 1px solid #2c2c3e;
+  border-radius: 10px;
+  background: #0d0d18;
+  overflow: hidden;
+}
+
+.rt-scroll {
+  overflow-x: auto;
+}
+
+.rt-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rt-caption {
+  padding: 8px 14px 10px;
+  color: #8a93a6;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+/* Botón de pausa / reanudación */
+.rt-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  padding: 5px 12px;
+  border: 1px solid rgba(127, 196, 245, 0.45);
+  border-radius: 999px;
+  background: rgba(13, 13, 24, 0.78);
+  color: #a9dcff;
+  font-family: inherit;
+  font-size: 0.72rem;
+  cursor: pointer;
+}
+
+.rt-toggle:hover {
+  border-color: #7fc4f5;
+}
+
+.rt-toggle:focus-visible {
+  outline: 2px solid #7fc4f5;
+  outline-offset: 2px;
+}
+
+/* Tipografía del esquema */
+.rt-label {
+  fill: #9aa4b8;
+  font-size: 12px;
+}
+
+.rt-label-fuerte {
+  fill: #14151f;
+  font-weight: 700;
+}
+
+.rt-label-small {
+  fill: #6f7890;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Elementos animados */
+.rt-estrella {
+  fill: #ffffff;
+  animation: rt-parpadeo 3s ease-in-out infinite alternate;
+}
+
+.rt-orbita {
+  transform-origin: 150px 150px;
+  animation: rt-girar 3.8s linear infinite;
+}
+
+.rt-nucleo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: rt-latido 3.8s ease-in-out infinite;
+}
+
+.rt-destello {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: rt-destello 4.4s ease-out infinite;
+}
+
+.rt-foton path {
+  fill: none;
+  stroke: #8fd3ff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.rt-foton {
+  opacity: 0;
+  animation: rt-viajar 4.4s linear infinite;
+}
+
+.rt-espectro {
+  fill: none;
+  stroke: #7fc4f5;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+.rt-pico {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: rt-pico 4.4s ease-in-out infinite 3.8s;
+}
+
+/* Pausa global */
+.pausada .rt-svg * {
+  animation-play-state: paused;
+}
+
+@keyframes rt-girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rt-viajar {
+  0% { transform: translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(408px); opacity: 0; }
+}
+
+@keyframes rt-destello {
+  0%, 10% { opacity: 0; transform: scale(0.4); }
+  16% { opacity: 0.85; }
+  42%, 100% { opacity: 0; transform: scale(2); }
+}
+
+@keyframes rt-latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes rt-parpadeo {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes rt-pico {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  18% { opacity: 1; transform: scale(1.6); }
+  45% { opacity: 0.3; transform: scale(0.8); }
+}
+
+/* En pantallas pequeñas el diagrama se puede desplazar para no perder detalle */
+@media (max-width: 700px) {
+  .rt-svg {
+    min-width: 620px;
+  }
+
+  .rt-toggle {
+    top: 6px;
+    right: 6px;
+    padding: 4px 9px;
+    font-size: 0.65rem;
+  }
+
+  .rt-caption {
+    font-size: 0.7rem;
+  }
+}
+
+/* Accesibilidad: sin animación si el usuario la ha desactivado */
+@media (prefers-reduced-motion: reduce) {
+  .rt-svg * {
+    animation: none !important;
+  }
+
+  .rt-foton,
+  .rt-destello {
+    opacity: 0;
+  }
+}

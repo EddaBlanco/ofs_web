@@ -3,11 +3,12 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ObservacionService } from '../../../services/observacion';
 import { Observacion } from '../../../models/observacion';
+import { AnimacionRadiotelescopio } from './animacion-radiotelescopio/animacion-radiotelescopio';
 
 @Component({
   selector: 'app-radiotelescopio',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf],
+  imports: [CommonModule, NgFor, NgIf, AnimacionRadiotelescopio],
   templateUrl: './radiotelescopio.html',
   styleUrls: ['./radiotelescopio.scss']
 })
@@ -37,6 +38,31 @@ export class Radiotelescopio implements OnInit, AfterViewInit, OnDestroy {
   tipoOrden: 'fecha' | 'localizacion' | 'pico' = 'fecha';
   //skyLat: number = 40.4168;
   //skyLon: number = -3.7038;
+
+  // Repositorios del proyecto (Apéndice B del TFG)
+  recursos: Array<{ titulo: string; descripcion: string; url: string }> = [
+    {
+      titulo: 'Espectrómetro GNU Radio',
+      descripcion: 'Código de GNU Radio utilizado para las observaciones.',
+      url: 'https://github.com/EddaBlanco/espectrometro.git'
+    },
+    {
+      titulo: 'Procesador de gráficas',
+      descripcion: 'Automatización de las gráficas y datos de las observaciones.',
+      url: 'https://github.com/EddaBlanco/Procesador-graficas.git'
+    },
+    {
+      titulo: 'Gráficas de la antena',
+      descripcion: 'Código para la realización de las gráficas de la antena.',
+      url: 'https://github.com/EddaBlanco/antena.git'
+    },
+    {
+      titulo: 'DSPIRA (gr-radio_astro)',
+      descripcion: 'Proyecto de GNU Radio en el que se basa el espectrómetro.',
+      url: 'https://github.com/WVURAIL/gr-radio_astro.git'
+    }
+  ];
+
   
   constructor(private obsService: ObservacionService) {}
   //Cargo las observaciones del servicio
