@@ -71,7 +71,11 @@ export class Radiotelescopio implements OnInit, AfterViewInit, OnDestroy {
   }
   
   ngAfterViewInit() {
-    // El canvas se inicializa cuando se selecciona una observación
+    // Si ya hay una observación seleccionada, dibuja su espectro en cuanto
+    // el canvas está disponible.
+    if (this.observacionSeleccionada && this.datosEspectro.length > 0) {
+      this.dibujarGrafico();
+    }
   }
   /*
   getFechaObservacion(obs: Observacion): Date {
@@ -93,6 +97,12 @@ export class Radiotelescopio implements OnInit, AfterViewInit, OnDestroy {
         this.filtrarYOrdenar();
         console.log('[Radiotelescopio] observaciones filtradas:', this.observacionesFiltradas.length);
         this.cargandoLista = false;
+
+        // Selecciona automáticamente la primera observación para que el
+        // gráfico siempre muestre datos al abrir la página.
+        if (!this.observacionSeleccionada && this.observacionesFiltradas.length > 0) {
+          this.seleccionarObservacion(this.observacionesFiltradas[0]);
+        }
       },
       error: (err) => {
         console.error('Error cargando observaciones:', err);

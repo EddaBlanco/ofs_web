@@ -14,12 +14,18 @@
           class="project-item"
           [style]="{ '--card-accent': project.accent, '--card-accent-soft': project.accentSoft }"
         >
-          <article class="project-card">
+          <article class="project-card" [class.project-card--linked]="project.route">
             <span class="project-icon" aria-hidden="true">
               <fa-icon [icon]="project.icon"></fa-icon>
             </span>
             <h3 class="project-title">{{ project.title }}</h3>
             <p class="project-description">{{ project.description }}</p>
+            @if (project.route) {
+              <a class="project-link" [routerLink]="project.route">
+                {{ project.linkLabel || 'Ver más' }}
+                <span aria-hidden="true">→</span>
+              </a>
+            }
           </article>
         </li>
       }

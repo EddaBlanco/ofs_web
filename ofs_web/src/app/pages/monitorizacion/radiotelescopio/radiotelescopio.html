@@ -25,29 +25,6 @@
         No hay observaciones disponibles. Los datos se leen desde <code>assets/observaciones/manifest.json</code> y los CSV asociados.
       </div>
     </div>
-
-    <div class="detalle-seleccion" *ngIf="observacionSeleccionada">
-      <h3>Datos seleccionados</h3>
-      <div class="detalle-row"><strong>Fecha:</strong> {{ observacionSeleccionada.fecha }}</div>
-      <div class="detalle-row"><strong>Hora:</strong> {{ observacionSeleccionada.hora }}</div>
-      <div class="detalle-row"><strong>Localización:</strong> {{ observacionSeleccionada.localizacion }}</div>
-      <div class="detalle-row"><strong>Azimut:</strong> {{ observacionSeleccionada.azimut }}°</div>
-      <div class="detalle-row"><strong>Elevación:</strong> {{ observacionSeleccionada.elevacion }}°</div>
-      <div class="detalle-row"><strong>Archivo:</strong> {{ observacionSeleccionada.archivo_nombre }}</div>
-      <div class="acciones-seleccion">
-        <button class="btn-descargar" type="button"
-                [disabled]="cargandoCsv || !csvDisponible"
-                (click)="descargarCSV(observacionSeleccionada)">
-          Descargar CSV
-        </button>
-        <span class="info-descarga" *ngIf="cargandoCsv">
-          Cargando CSV... espere un momento.
-        </span>
-        <span class="info-descarga" *ngIf="!cargandoCsv && !csvDisponible">
-          El CSV aún no está listo. Selecciona otra observación o espera.
-        </span>
-      </div>
-    </div>
   </div>
 
   <div class="panel-grafica">
@@ -86,6 +63,31 @@
       <div class="hover-info" *ngIf="hoverInfo">
         <strong>Frecuencia:</strong> {{ hoverInfo.frecuencia.toFixed(3) }} MHz
         • <strong>Intensidad:</strong> {{ hoverInfo.intensidad.toFixed(1) }}</div>
+
+      <div class="detalle-seleccion" *ngIf="observacionSeleccionada">
+        <h3>Datos seleccionados</h3>
+        <div class="detalle-grid">
+          <div class="detalle-row"><strong>Fecha:</strong> {{ observacionSeleccionada.fecha }}</div>
+          <div class="detalle-row"><strong>Hora:</strong> {{ observacionSeleccionada.hora }}</div>
+          <div class="detalle-row"><strong>Localización:</strong> {{ observacionSeleccionada.localizacion }}</div>
+          <div class="detalle-row"><strong>Azimut:</strong> {{ observacionSeleccionada.azimut }}°</div>
+          <div class="detalle-row"><strong>Elevación:</strong> {{ observacionSeleccionada.elevacion }}°</div>
+          <div class="detalle-row"><strong>Archivo:</strong> {{ observacionSeleccionada.archivo_nombre }}</div>
+        </div>
+        <div class="acciones-seleccion">
+          <button class="btn-descargar" type="button"
+                  [disabled]="cargandoCsv || !csvDisponible"
+                  (click)="descargarCSV(observacionSeleccionada)">
+            Descargar CSV
+          </button>
+          <span class="info-descarga" *ngIf="cargandoCsv">
+            Cargando CSV... espere un momento.
+          </span>
+          <span class="info-descarga" *ngIf="!cargandoCsv && !csvDisponible">
+            El CSV aún no está listo. Selecciona otra observación o espera.
+          </span>
+        </div>
+      </div>
 
       <div class="notas" *ngIf="observacionSeleccionada.notas">
         <strong>Notas:</strong> {{ observacionSeleccionada.notas }}</div>

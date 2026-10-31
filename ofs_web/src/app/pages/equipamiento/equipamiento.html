@@ -1,31 +1,71 @@
-<div class="container flow-text text-white">
-  <div class="row justify-content-center ficha" role="group" aria-label="Filtrar equipamiento por tipo">
-    <button
-      *ngFor="let elem of types"
-      type="button"
-      class="rounded button-filter text-white col-auto z-depth-5"
-      [class.selected]="selectedType === elem.type"
-      [attr.aria-pressed]="selectedType === elem.type"
-      (click)="filterEquipment(elem.type)"
-    >
-      {{ elem.label }}
-    </button>
-  </div>
+<section class="equipamiento" aria-labelledby="equipamiento-title">
+  <div class="equipamiento-inner">
+    <header class="equip-header">
+      <p class="section-eyebrow">Instrumentación del observatorio</p>
+      <h1 id="equipamiento-title">Equipamiento</h1>
+      <p class="equip-lead">
+        Instrumentos y dispositivos que hacen posible la monitorización y la observación
+        astronómica en el Observatorio Francisco Sánchez: sensores ambientales, telescopios
+        y cámaras preparados para trabajar en exteriores.
+      </p>
+      <p class="equip-count">
+        <span class="equip-count-number">{{ totalEquipos }}</span>
+        equipos en el catálogo
+      </p>
+    </header>
 
-  <div class="ficha row bg-transparent no-padding rounded z-depth-5" *ngFor="let device of showingEquipment">
-    <div class="col-12 col-lg-6 no-padding">
-      <img class="image rounded" [src]="device.image" [alt]="device.name + ': ' + device.model">
+    <div class="filtros" role="group" aria-label="Filtrar equipamiento por tipo">
+      <button
+        *ngFor="let elem of types"
+        type="button"
+        class="filtro"
+        [class.selected]="selectedType === elem.type"
+        [style.--filtro-accent]="elem.accent"
+        [attr.aria-pressed]="selectedType === elem.type"
+        (click)="filterEquipment(elem.type)"
+      >
+        <span class="filtro-label">{{ elem.label }}</span>
+        <span class="filtro-count">{{ getTypeCount(elem.type) }}</span>
+      </button>
     </div>
-    <div class="col-12 col-lg-6 ficha">
-      <h1 class="card-title">{{ device.model }}</h1>
 
-      <p [innerHTML]="getDescriptionHtml(device.description)"></p>
-      <div class="transparent" *ngFor="let property of device.properties">
-        <div class="row">
-          <p class="font-weight-light col-4">{{ property.name }}</p>
-          <p class="col-8">{{ property.value }}</p>
+    <p class="resultado" aria-live="polite">
+      Mostrando {{ showingEquipment.length }}
+      {{ showingEquipment.length === 1 ? 'equipo' : 'equipos' }}
+    </p>
+
+    <div class="equip-grid">
+      <article
+        class="equip-card"
+        *ngFor="let device of showingEquipment"
+        [style.--card-accent]="getTypeAccent(device.type)"
+      >
+        <div class="equip-media">
+          <img
+            [src]="device.image"
+            [alt]="device.name + ': ' + device.model"
+            loading="lazy"
+          />
+          <span class="equip-badge">{{ getTypeLabel(device.type) }}</span>
         </div>
-      </div>
+
+        <div class="equip-body">
+          <p class="equip-name">{{ device.name }}</p>
+          <h2 class="equip-model">{{ device.model }}</h2>
+          <p class="equip-desc" [innerHTML]="getDescriptionHtml(device.description)"></p>
+
+          <dl class="equip-specs" *ngIf="device.properties.length > 0">
+            <div class="equip-spec" *ngFor="let property of device.properties">
+              <dt>{{ property.name }}</dt>
+              <dd>{{ property.value }}</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
     </div>
+
+    <p class="sin-datos" *ngIf="showingEquipment.length === 0">
+      No hay equipamiento de este tipo en el catálogo.
+    </p>
   </div>
-</div>
+</section>
