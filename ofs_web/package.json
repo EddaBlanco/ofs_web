@@ -3,10 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "prestart": "node scripts/generar-manifest-fotos.mjs",
+    "start": "node scripts/dev.mjs",
+    "prebuild": "node scripts/generar-manifest-fotos.mjs",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "fotos": "node scripts/generar-manifest-fotos.mjs",
+    "fotos:watch": "node scripts/generar-manifest-fotos.mjs --watch"
   },
   "prettier": {
     "printWidth": 100,

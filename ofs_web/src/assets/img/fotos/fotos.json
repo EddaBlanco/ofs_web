@@ -1,0 +1,180 @@
+{
+  "generado": "2026-10-31T14:30:46.834Z",
+  "total": 18,
+  "carpetas": [
+    {
+      "id": "Cupula",
+      "nombre": "Cúpula",
+      "titulo": "Imagenes de la cupula por fuera",
+      "descripcion": "Imagenes de la cupula por fuera",
+      "total": 2
+    },
+    {
+      "id": "Observaciones",
+      "nombre": "Observaciones",
+      "titulo": "Imagenes de cuando hemos realizado las observaciones",
+      "descripcion": "Imagenes de cuando hemos realizado las observaciones",
+      "total": 6
+    },
+    {
+      "id": "Poster-imdea",
+      "nombre": "Póster IMDEA",
+      "titulo": "Exposicion de posters de imdea",
+      "descripcion": "Exposicion de posters de imdea",
+      "total": 4
+    },
+    {
+      "id": "Semana-ciencia-25-26",
+      "nombre": "Semana de la Ciencia 25/26",
+      "titulo": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "descripcion": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "total": 6
+    }
+  ],
+  "fotos": [
+    {
+      "src": "assets/img/fotos/Cupula/photo_2020-10-27_10-06-50%20(2).jpg",
+      "carpeta": "Cúpula",
+      "carpetaId": "Cupula",
+      "titulo": "Imagenes de la cupula por fuera",
+      "descripcion": "Imagenes de la cupula por fuera",
+      "alt": "Imagenes de la cupula por fuera — Cúpula"
+    },
+    {
+      "src": "assets/img/fotos/Cupula/photo_2020-10-27_10-06-52%20(2).jpg",
+      "carpeta": "Cúpula",
+      "carpetaId": "Cupula",
+      "titulo": "Imagenes de la cupula por fuera",
+      "descripcion": "Imagenes de la cupula por fuera",
+      "alt": "Imagenes de la cupula por fuera — Cúpula"
+    },
+    {
+      "src": "assets/img/fotos/Observaciones/WhatsApp%20Image%202026-10-31%20at%2015.13.32%20(1).jpeg",
+      "carpeta": "Observaciones",
+      "carpetaId": "Observaciones",
+      "titulo": "Imagenes de cuando hemos realizado las observaciones",
+      "descripcion": "Imagenes de cuando hemos realizado las observaciones",
+      "alt": "Imagenes de cuando hemos realizado las observaciones — Observaciones"
+    },
+    {
+      "src": "assets/img/fotos/Observaciones/WhatsApp%20Image%202026-10-31%20at%2015.13.32%20(2).jpeg",
+      "carpeta": "Observaciones",
+      "carpetaId": "Observaciones",
+      "titulo": "Imagenes de cuando hemos realizado las observaciones",
+      "descripcion": "Imagenes de cuando hemos realizado las observaciones",
+      "alt": "Imagenes de cuando hemos realizado las observaciones — Observaciones"
+    },
+    {
+      "src": "assets/img/fotos/Observaciones/WhatsApp%20Image%202026-10-31%20at%2015.13.32%20(3).jpeg",
+      "carpeta": "Observaciones",
+      "carpetaId": "Observaciones",
+      "titulo": "Imagenes de cuando hemos realizado las observaciones",
+      "descripcion": "Imagenes de cuando hemos realizado las observaciones",
+      "alt": "Imagenes de cuando hemos realizado las observaciones — Observaciones"
+    },
+    {
+      "src": "assets/img/fotos/Observaciones/WhatsApp%20Image%202026-10-31%20at%2015.13.32%20(4).jpeg",
+      "carpeta": "Observaciones",
+      "carpetaId": "Observaciones",
+      "titulo": "Imagenes de cuando hemos realizado las observaciones",
+      "descripcion": "Imagenes de cuando hemos realizado las observaciones",
+      "alt": "Imagenes de cuando hemos realizado las observaciones — Observaciones"
+    },
+    {
+      "src": "assets/img/fotos/Observaciones/WhatsApp%20Image%202026-10-31%20at%2015.13.32.jpeg",
+      "carpeta": "Observaciones",
+      "carpetaId": "Observaciones",
+      "titulo": "Imagenes de cuando hemos realizado las observaciones",
+      "descripcion": "Imagenes de cuando hemos realizado las observaciones",
+      "alt": "Imagenes de cuando hemos realizado las observaciones — Observaciones"
+    },
+    {
+      "src": "assets/img/fotos/Observaciones/WhatsApp%20Image%202026-10-31%20at%2015.13.33.jpeg",
+      "carpeta": "Observaciones",
+      "carpetaId": "Observaciones",
+      "titulo": "Imagenes de cuando hemos realizado las observaciones",
+      "descripcion": "Imagenes de cuando hemos realizado las observaciones",
+      "alt": "Imagenes de cuando hemos realizado las observaciones — Observaciones"
+    },
+    {
+      "src": "assets/img/fotos/Poster-imdea/WhatsApp%20Imagas1%20at%2015.16.06.jpeg",
+      "carpeta": "Póster IMDEA",
+      "carpetaId": "Poster-imdea",
+      "titulo": "Exposicion de posters de imdea",
+      "descripcion": "Exposicion de posters de imdea",
+      "alt": "Exposicion de posters de imdea — Póster IMDEA"
+    },
+    {
+      "src": "assets/img/fotos/Poster-imdea/WhatsApp%20Image%202026-10-31%20at%2015.11.55.jpeg",
+      "carpeta": "Póster IMDEA",
+      "carpetaId": "Poster-imdea",
+      "titulo": "Exposicion de posters de imdea",
+      "descripcion": "Exposicion de posters de imdea",
+      "alt": "Exposicion de posters de imdea — Póster IMDEA"
+    },
+    {
+      "src": "assets/img/fotos/Poster-imdea/WhatsApp%20Image%202026-10-31%20at%2015.16.06%20(1).jpeg",
+      "carpeta": "Póster IMDEA",
+      "carpetaId": "Poster-imdea",
+      "titulo": "Exposicion de posters de imdea",
+      "descripcion": "Exposicion de posters de imdea",
+      "alt": "Exposicion de posters de imdea — Póster IMDEA"
+    },
+    {
+      "src": "assets/img/fotos/Poster-imdea/WhatsApp%20Image%202026-10-31%20at%2015.16.06%20(2).jpeg",
+      "carpeta": "Póster IMDEA",
+      "carpetaId": "Poster-imdea",
+      "titulo": "Exposicion de posters de imdea",
+      "descripcion": "Exposicion de posters de imdea",
+      "alt": "Exposicion de posters de imdea — Póster IMDEA"
+    },
+    {
+      "src": "assets/img/fotos/Semana-ciencia-25-26/WhatsApp%20Image%202025-11-11%20at%2010.56.18%20(4).jpeg",
+      "carpeta": "Semana de la Ciencia 25/26",
+      "carpetaId": "Semana-ciencia-25-26",
+      "titulo": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "descripcion": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "alt": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios — Semana de la Ciencia 25/26"
+    },
+    {
+      "src": "assets/img/fotos/Semana-ciencia-25-26/WhatsApp%20Image%202025-11-11%20at%2010.56.18%20(5).jpeg",
+      "carpeta": "Semana de la Ciencia 25/26",
+      "carpetaId": "Semana-ciencia-25-26",
+      "titulo": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "descripcion": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "alt": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios — Semana de la Ciencia 25/26"
+    },
+    {
+      "src": "assets/img/fotos/Semana-ciencia-25-26/WhatsApp%20Image%202025-11-11%20at%2010.56.18.jpeg",
+      "carpeta": "Semana de la Ciencia 25/26",
+      "carpetaId": "Semana-ciencia-25-26",
+      "titulo": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "descripcion": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "alt": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios — Semana de la Ciencia 25/26"
+    },
+    {
+      "src": "assets/img/fotos/Semana-ciencia-25-26/WhatsApp%20Image%202025-11-11%20at%2010.56.21%20(2).jpeg",
+      "carpeta": "Semana de la Ciencia 25/26",
+      "carpetaId": "Semana-ciencia-25-26",
+      "titulo": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "descripcion": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "alt": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios — Semana de la Ciencia 25/26"
+    },
+    {
+      "src": "assets/img/fotos/Semana-ciencia-25-26/WhatsApp%20Image%202026-10-31%20at%2015.13.33%20(3).jpeg",
+      "carpeta": "Semana de la Ciencia 25/26",
+      "carpetaId": "Semana-ciencia-25-26",
+      "titulo": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "descripcion": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "alt": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios — Semana de la Ciencia 25/26"
+    },
+    {
+      "src": "assets/img/fotos/Semana-ciencia-25-26/WhatsApp%20Image%202026-10-31%20at%2015.13.33%20(4).jpeg",
+      "carpeta": "Semana de la Ciencia 25/26",
+      "carpetaId": "Semana-ciencia-25-26",
+      "titulo": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "descripcion": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios",
+      "alt": "Semana de la ciencia 2025-2026 exposicion de la semana de la ciencia a colegios — Semana de la Ciencia 25/26"
+    }
+  ]
+}

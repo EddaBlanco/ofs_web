@@ -1,0 +1,132 @@
+<section class="fotos" id="galeria" aria-labelledby="fotos-title">
+  <div class="fotos-inner">
+    <p class="section-eyebrow">Galería</p>
+    <h2 id="fotos-title">El observatorio en imágenes</h2>
+    <p class="fotos-lead">
+      Un recorrido por las actividades, observaciones y talleres que hacemos en el Observatorio
+      Francisco Sánchez.
+    </p>
+
+    @if (total() > 0) {
+      <div
+        class="fotos-carrusel"
+        role="region"
+        aria-roledescription="carrusel"
+        aria-label="Galería de fotos del observatorio"
+        (mouseenter)="entrarRaton()"
+        (mouseleave)="salirRaton()"
+      >
+        <div
+          class="fotos-escenario"
+          tabindex="0"
+          (keydown)="alPulsarTecla($event)"
+          (pointerdown)="iniciarSwipe($event)"
+          (pointerup)="terminarSwipe($event)"
+          (pointercancel)="cancelarSwipe()"
+        >
+          @for (foto of fotos(); track foto.src; let i = $index) {
+            <figure
+              class="foto-slide"
+              [class.foto-slide--activa]="i === indice()"
+              [attr.aria-hidden]="i === indice() ? null : 'true'"
+              [attr.aria-label]="i + 1 + ' de ' + total() + ': ' + foto.titulo"
+            >
+              <div
+                class="foto-fondo"
+                [style.background-image]="fondoFoto(foto)"
+                aria-hidden="true"
+              ></div>
+
+              <img
+                [src]="foto.src"
+                [alt]="foto.alt"
+                [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+                decoding="async"
+                draggable="false"
+              >
+
+              <figcaption class="foto-pie">
+                <span class="foto-carpeta">{{ foto.carpeta }}</span>
+                <h3 class="foto-titulo">{{ foto.titulo }}</h3>
+                @if (foto.descripcion && foto.descripcion !== foto.titulo) {
+                  <p class="foto-descripcion">{{ foto.descripcion }}</p>
+                }
+              </figcaption>
+            </figure>
+          }
+
+          <button
+            type="button"
+            class="foto-flecha foto-flecha--izq"
+            (click)="anterior()"
+            aria-label="Foto anterior"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            class="foto-flecha foto-flecha--der"
+            (click)="siguiente()"
+            aria-label="Foto siguiente"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="fotos-barra">
+          <button
+            type="button"
+            class="foto-control"
+            (click)="alternarReproduccion()"
+            [attr.aria-label]="reproduciendo() ? 'Pausar el carrusel' : 'Reanudar el carrusel'"
+            [attr.aria-pressed]="reproduciendo()"
+          >
+            @if (reproduciendo()) {
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <rect x="6.5" y="5" width="4" height="14" rx="1.2" />
+                <rect x="13.5" y="5" width="4" height="14" rx="1.2" />
+              </svg>
+            } @else {
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5.5v13a1 1 0 0 0 1.5.87l10.2-6.5a1 1 0 0 0 0-1.74L9.5 4.63A1 1 0 0 0 8 5.5Z" />
+              </svg>
+            }
+          </button>
+
+          <div class="fotos-puntos">
+            @for (foto of fotos(); track foto.src; let i = $index) {
+              <button
+                type="button"
+                class="foto-punto"
+                [class.foto-punto--activo]="i === indice()"
+                (click)="irA(i)"
+                [attr.aria-label]="'Ir a la foto ' + (i + 1) + ': ' + foto.titulo"
+                [attr.aria-current]="i === indice() ? 'true' : null"
+              ></button>
+            }
+          </div>
+
+          <p class="fotos-contador" aria-hidden="true">
+            <span>{{ numeroActual() }}</span> / {{ numeroTotal() }}
+          </p>
+        </div>
+      </div>
+    } @else if (cargando()) {
+      <div class="fotos-cargando" role="status">
+        <span class="visually-hidden">Cargando la galería de fotos…</span>
+      </div>
+    } @else {
+      <div class="fotos-vacio" role="status">
+        <p>Todavía no hay fotos en la galería.</p>
+        <button type="button" class="fotos-reintentar" (click)="recargar()">Volver a intentar</button>
+      </div>
+    }
+  </div>
+</section>

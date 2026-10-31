@@ -2,12 +2,29 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
 
+## Galería de fotos
+
+El carrusel de la página principal se alimenta de las carpetas que hay en
+`src/assets/img/fotos`. Para añadir imágenes:
+
+1. Crea una subcarpeta dentro de `src/assets/img/fotos` y mete ahí las fotos.
+2. Añade un `nota.txt` o `notas.txt` con la descripción. La primera línea se
+   usa como título azul del carrusel; si no hay nota, se usa el nombre de la
+   carpeta.
+3. Arranca la web con `npm start`. El manifiesto `fotos.json` se regenera solo
+   al arrancar y, mientras el servidor está en marcha, también al añadir o
+   quitar carpetas/fotos.
+
+`npm run build` genera igualmente el manifiesto antes de compilar. Si se usa
+`ng serve` directamente, se puede mantener actualizado con `npm run fotos:watch`
+en otra terminal.
+
 ## Development server
 
 To start a local development server, run:
 
 ```bash
-ng serve
+npm start
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
